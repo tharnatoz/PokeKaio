@@ -1,1 +1,6 @@
-*.ini
+*.pyc
+
+# ignore config dir
+config/*
+# except
+!*.example

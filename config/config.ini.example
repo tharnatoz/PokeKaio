@@ -1,6 +1,7 @@
 # database options
 
-#host
-#db_name
-#db_user
-#db_pass
+[mysql]
+#db_host=
+#db_name=
+#db_user=
+#db_pass=
