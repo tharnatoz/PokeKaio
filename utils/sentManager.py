@@ -8,7 +8,6 @@ class SentManager:
 	def __init__(self):
 		self.already_sent = []
 
-
 	def checkIfAlreadySent(self, encounter_id):
 		for encounter in self.already_sent:
 			if str(encounter_id) == str(encounter["encounter_id"]):
@@ -29,4 +28,3 @@ class SentManager:
 		for encounter in self.already_sent:
 			if encounter["disappear_time"] < dt.datetime.now() - dt.timedelta(minutes=70):
 				self.already_sent.remove(encounter)
-

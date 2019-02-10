@@ -17,7 +17,6 @@ class DatabaseConnector:
 		self.host = config.get('database', 'db_host')
 		self.database = config.get('database', 'db_name')
 
-
 	def connect(self):
 
 		#print "Connecting to Database " + self.database
@@ -26,9 +25,6 @@ class DatabaseConnector:
 											password = self.password,
         	    	                  		host = self.host,
             	    	              		database = self.database)
-
-
-
 		except mysql.connector.Error as err:
   			if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
 				print("Something is wrong with your user name or password")

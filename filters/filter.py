@@ -6,11 +6,12 @@ class Filter:
 		self.availableFilterTypes = ["whitelist", 'iv']
 
 		if filterOptions['type'] not in self.availableFilterTypes:
-			return "Unknown Filtertype"
+			raise ValueError('Unknown filter type ' + filterOptions['type'] + '. Please check channels.json')
 
 		self.filterConfig = filterOptions
 
 	def isFilterSatisfied(self, pokemon):
+
 		if (self.filterConfig['type'] == "whitelist"):
 			return self.filterWhitelist(pokemon['pokemon_id'])
 		elif (self.filterConfig['type'] == "iv"):

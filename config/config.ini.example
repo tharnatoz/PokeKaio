@@ -5,3 +5,7 @@
 #db_name=
 #db_user=
 #db_pass=
+
+
+[channler]
+checkInterval = 30 	# interval to fetch data from database

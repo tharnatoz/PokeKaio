@@ -8,6 +8,7 @@ class Channler:
 
 	def __init__(self, channelConfig):
 
+		self.name = channelConfig['name']
 		self.messenger = channelConfig['messenger']
 		self.type = channelConfig['type']
 		self.channelId = channelConfig['channelId']
@@ -20,8 +21,7 @@ class Channler:
 		if(self.messenger == 'telegram'):
 			self.notificationCnx = telegram.Telegram(self.botToken, self.channelId)
 		else:
-			raise ValueError('Unknown Channel Type')
-
+			raise ValueError('Unknown messenger type ' + self.messenger + " on "+self.name+". Please check channels.json")
 
 	def run(self):
 		# first get data

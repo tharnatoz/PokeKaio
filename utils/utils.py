@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 # coding: utf8
+
 from shapely.geometry import Point
 from shapely.geometry.polygon import Polygon
-
-
 
 from pokemon_data import *
 import json
@@ -78,7 +77,6 @@ def getPokemonLevel(cpMultiplier):
 	pokemonLevel = (round(pokemonLevel) * 2) / 2
 
 	return pokemonLevel
-
 
 # returns the dissapear time in human readable H/M/S format
 def getDisapearTime(disappear_time):
