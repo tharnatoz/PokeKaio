@@ -14,7 +14,7 @@ class Channler(Thread):
 		Thread.__init__(self)
 
 		self.threadName = name
-		self.name = channelConfig['name']
+		self.channelName = channelConfig['name']
 		self.messenger = channelConfig['messenger']
 		self.type = channelConfig['type']
 		self.channelId = channelConfig['channelId']
@@ -27,10 +27,11 @@ class Channler(Thread):
 		if(self.messenger == 'telegram'):
 			self.notificationCnx = telegram.Telegram(self.botToken, self.channelId)
 		else:
-			raise ValueError('Unknown messenger type ' + self.messenger + " on "+self.name+". Please check channels.json")
+			raise ValueError('Unknown messenger type ' + self.messenger + " on "+self.channelName+". Please check channels.json")
 
 	def run(self):
 		print "Thread " + self.threadName + " is initialized and ready to use"
+		print "Channel " + self.channelName + " is up"
 
 	def check(self):
 		# first get data

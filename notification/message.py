@@ -22,6 +22,7 @@ def getMessageWithMonInfos(pokemon):
 	disappear_time = u.getDisapearTime(pokemon["disappear_time"])
 
 	message ="<b>Ein wildes " + pokemons_de[pokemon_id]+gender+"</b>"+ weather +"\n"+str(form)+	str(cp) +"WP - "+str(full_iv)+"%IV - LVL "+lv+"\n"+"(A"+str(iv_a)+"/D"+str(iv_d)+"/S"+str(iv_s)+") \n"+	"Noch " + str(duration) + " bis " + str(disappear_time) + "Uhr"
+
 	return message
 
 

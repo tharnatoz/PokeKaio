@@ -28,6 +28,9 @@ if __name__ == "__main__":
 			channelList.append(tmpChannler)
 			i += 1
 
+	if (len(channelList) == 0):
+		raise ValueError('No Channels found. Please go to config/channels.json and configure at least one')
+
 	for channel in channelList:
 			channel.start()
 

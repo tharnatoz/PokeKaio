@@ -93,15 +93,6 @@ def getPokemonDurationTime(disappear_time):
 		return "{:02d}m {:02d}s".format(int(m), int(sec))
 	else:
 		return "{:02d}m {:02d}s".format(int(0), int(0))
-	#h = totsec//3600
-	'''print("###############")
-	print(totsec)
-	m = (totsec%3600) // 60
-	sec =(totsec%3600)%60
-	print(m)
-	print(sec)
-	print(getDisapearTime(disappear_time))
-	print("###############")'''
 
 def checkIfSpawnIsExpired(disappear_time):
 	duration = ( disappear_time + dt.timedelta(hours=1) ) - dt.datetime.now()
