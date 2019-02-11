@@ -87,18 +87,26 @@ def getDisapearTime(disappear_time):
 def getPokemonDurationTime(disappear_time):
 	duration = ( disappear_time + dt.timedelta(hours=1) ) - dt.datetime.now()
 	totsec = duration.total_seconds()
+	if(totsec > 0):
+		m = (totsec%3600) // 60
+		sec =(totsec%3600)%60
+		return "{:02d}m {:02d}s".format(int(m), int(sec))
+	else:
+		return "{:02d}m {:02d}s".format(int(0), int(0))
 	#h = totsec//3600
+	'''print("###############")
+	print(totsec)
 	m = (totsec%3600) // 60
-	sec =(totsec%3600)%60 #just for reference
-	return "{:02d}m {:02d}s".format(int(m), int(sec))
+	sec =(totsec%3600)%60
+	print(m)
+	print(sec)
+	print(getDisapearTime(disappear_time))
+	print("###############")'''
 
-def getLastModifiedTime():
-	#timestamp = int(time.time() - 180 - 3600)
-	#return  datetime.fromtimestamp(timestamp).strftime('%Y-%m-%d %H:%M:%S')
-	return dt.datetime.now() - dt.timedelta(hours=1, minutes=3)
-
-def getLastModifiedTime_lowest():
-	#timestamp = int(time.time() - 240 - 3600)
-	#return  datetime.fromtimestamp(timestamp).strftime('%Y-%m-%d %H:%M:%S')
-	return dt.datetime.now() - dt.timedelta(hours=1, minutes= 5)
-
+def checkIfSpawnIsExpired(disappear_time):
+	duration = ( disappear_time + dt.timedelta(hours=1) ) - dt.datetime.now()
+	totsec = duration.total_seconds()
+	if(totsec > 0):
+		return False
+	else:
+		return True

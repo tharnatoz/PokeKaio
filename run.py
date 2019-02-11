@@ -21,11 +21,19 @@ if __name__ == "__main__":
 		channelsConfig = json.load(f)
 
 	# create pkm channel
+	i = 0
 	for channel in channelsConfig['pokemon']:
-		tmpChannler = channler.Channler(channel)
-		channelList.append(tmpChannler)
+		if (channel['isActive'] == "true"):
+			tmpChannler = channler.Channler(channel, str(i))
+			channelList.append(tmpChannler)
+			i += 1
+
+	for channel in channelList:
+			channel.start()
 
 	while(True):
 		for channel in channelList:
-			channel.run()
+			channel.check()
 		time.sleep(checkInterval)
+
+
