@@ -2,7 +2,10 @@
 
 # ignore config dir
 config/*
+config/geofence/*
+
 # except
 !*.example
+!config/geofence/
 
 *.out
