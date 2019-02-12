@@ -26,7 +26,7 @@ def parseGeofence(geofenceFilePath):
 			if len(splitted_point) == 2:
 				point_tuple = (float(splitted_point[0]),float(splitted_point[1]))
 				polygon_array.append(point_tuple)
-		return polygon_array
+		return Polygon(polygon_array)
 
 def isInGeofence(geofence, pokemon):
 	if (not geofence):
