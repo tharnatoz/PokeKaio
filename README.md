@@ -83,6 +83,6 @@ Currently PokeKaio supports 2 Types of filter. IV and a Whitlist filter for a Su
     "ivMin": "44"
    }
 ```
-**Blacklist** The Blacklist is for every filter, each Pokemon Id in the list will be Ignored
+**Blacklist** The Blacklist is for every filter, each Pokemon Id in the list will be ignored
 
 
