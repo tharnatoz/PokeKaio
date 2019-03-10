@@ -35,7 +35,7 @@ class Channler(Thread):
 
 	def check(self):
 		# first get data
-		print "Thread: " + self.threadName + " is checking data"
+		# print "Thread: " + self.threadName + " is checking data"
 		if(self.type == 'pokemon'):
 			data = monDb.getPokemon()
 			for pokemon in data:
