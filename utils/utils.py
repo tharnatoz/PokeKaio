@@ -32,13 +32,13 @@ def isInGeofence(geofence, pokemon):
 	if (not geofence):
 		return True
 	else:
-		return geofence.contains(Point(pokemon['latitude'],pokemon['longitude']))
+		return geofence.contains(Point(pokemon.lat,pokemon.lon))
 
 def isNotInGeofence(geofence, pokemon):
 	if (not geofence):
 		return True
 	else:
-		return not geofence.contains(Point(pokemon['latitude'],pokemon['longitude']))
+		return not geofence.contains(Point(pokemon.lat,pokemon.lon))
 
 def getGender(gender):
 	if gender== 1:
@@ -59,10 +59,10 @@ def getForm(pokemon_id, form):
 		return ""
 
 def getFullStats (pokemon):
-	if pokemon['individual_attack'] is None:
+	if pokemon.atkIv is None:
 		return -1
 	else:
-		return pokemon['individual_attack'] + pokemon['individual_defense'] + pokemon['individual_stamina']
+		return pokemon.atkIv + pokemon.defIv + pokemon.staIv
 
 def calcIV (iv_a, iv_d, iv_s):
 	i = (iv_a + iv_d + iv_s) * 100 / 45

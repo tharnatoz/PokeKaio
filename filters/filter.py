@@ -13,7 +13,7 @@ class Filter:
 	def isFilterSatisfied(self, pokemon):
 
 		if (self.filterConfig['type'] == "whitelist"):
-			return self.filterWhitelist(pokemon['pokemon_id'])
+			return self.filterWhitelist(pokemon.pokemonId)
 		elif (self.filterConfig['type'] == "iv"):
 			return self.filterIv(pokemon)
 		else:
@@ -26,4 +26,4 @@ class Filter:
 		pokemonIv = getFullStats(pokemon)
 		maxIv = int(self.filterConfig['ivMax'])
 		minIv = int(self.filterConfig['ivMin'])
-		return pokemonIv <= maxIv and pokemonIv >= minIv and pokemon['pokemon_id'] not in self.filterConfig['blacklist']
+		return pokemonIv <= maxIv and pokemonIv >= minIv and pokemon.pokemonId not in self.filterConfig['blacklist']
