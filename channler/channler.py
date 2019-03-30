@@ -23,6 +23,7 @@ class Channler(Thread):
 		self.includeArea = utils.parseGeofence(channelConfig['geofence'])
 		self.excludeArea = utils.parseGeofence(channelConfig['geofence_exclude'])
 		self.sentManager = sm.SentManager()
+		self.pokemonDbWrapper = monDb.PokemonDb()
 
 		if(self.messenger == 'telegram'):
 			self.notificationCnx = telegram.Telegram(self.botToken, self.channelId)
@@ -37,7 +38,8 @@ class Channler(Thread):
 		# first get data
 		# print "Thread: " + self.threadName + " is checking data"
 		if(self.type == 'pokemon'):
-			data = monDb.getPokemon()
+			data = self.pokemonDbWrapper.getPokemon()
+
 			for pokemon in data:
 				if(not utils.checkIfSpawnIsExpired(pokemon['disappear_time'])):
 					if(not self.sentManager.checkIfAlreadySent(pokemon['encounter_id'])):

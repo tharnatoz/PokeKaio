@@ -20,14 +20,12 @@ class DatabaseConnector:
 
 	def connect(self):
 
-		#print "Connecting to Database " + self.database
 		try:
 			cnx = mysql.connector.connect(	user = self.user,
 											password = self.password,
         	    	                  		host = self.host,
             	    	              		database = self.database,
-            	    	              		port = self.port,
-            	    	              		auth_plugin = 'mysql_native_password')
+            	    	              		port = self.port)
 		except mysql.connector.Error as err:
   			if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
 				print("Something is wrong with your user name or password")

@@ -16,7 +16,14 @@ def getMessageWithMonInfos(pokemon):
 	gender = u.getGender(pokemon["gender"])
 	cp = pokemon["cp"]
 	weather = u.getWeather(pokemon["weather_boosted_condition"])
-	lv = str(u.getPokemonLevel(pokemon['cp_multiplier']))
+
+	if 'cp_multiplier' in pokemon:
+		lv = str(u.getPokemonLevel(pokemon['cp_multiplier']))
+	elif 'lv' in pokemon:
+		lv = str(pokemon['lv'])
+	else:
+		lv = ""
+
 	full_iv = u.calcIV(iv_a, iv_d, iv_s)
 	duration = u.getPokemonDurationTime(pokemon["disappear_time"])
 	disappear_time = u.getDisapearTime(pokemon["disappear_time"])
