@@ -54,7 +54,11 @@ class PokemonDb:
 		pokemon.disappear_time = u.getDisapearTime(pokemonRelation['disappear_time'])
 		pokemon.duration = u.getPokemonDurationTime(pokemonRelation['disappear_time'])
 
-		return pokemon
+		pokemons = []
+		for pokemonRelation in result_set:
+			pokemons.append(self._parseRDMRalationToModel(pokemonRelation))
+
+		return pokemons
 
 	def getPokemonFromRdmDatabase(self):
 		databaseObj = connector.DatabaseConnector()
