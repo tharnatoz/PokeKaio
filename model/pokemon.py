@@ -15,5 +15,6 @@ class Pokemon:
 		self.weather = None
 		self.lvl = None
 		self.cp = None
+		self.disappear_timestamp = None
 		self.disappear_time = None
 		self.duration = None

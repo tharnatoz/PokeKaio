@@ -9,19 +9,18 @@ def getMessage(pokemon):
 
 def getMessageWithMonInfos(pokemon):
 	pokemon_id = pokemon.pokemonId
-	form = u.getForm(pokemon_id, pokemon.form)
+	form = pokemon.form
 	iv_a = pokemon.atkIv
 	iv_d = pokemon.defIv
 	iv_s = pokemon.staIv
-	gender = u.getGender(pokemon.gender)
+	gender = pokemon.gender
 	cp = pokemon.cp
-	weather = u.getWeather(pokemon.weather)
+	weather = pokemon.weather
 
-
-	lv = pokemon.level
-	full_iv = u.calcIV(iv_a, iv_d, iv_s)
-	duration = u.getPokemonDurationTime(pokemon.disappear_time)
-	disappear_time = u.getDisapearTime(pokemon.disappear_time)
+	lv = str(pokemon.level)
+	full_iv = pokemon.iv
+	duration = pokemon.disappear_time
+	disappear_time = pokemon.disappear_time
 
 	message ="<b>Ein wildes " + pokemons_de[pokemon_id]+gender+"</b>"+ weather +"\n"+str(form)+	str(cp) +"WP - "+str(full_iv)+"%IV - LVL "+lv+"\n"+"(A"+str(iv_a)+"/D"+str(iv_d)+"/S"+str(iv_s)+") \n"+	"Noch " + str(duration) + " bis " + str(disappear_time) + "Uhr"
 
@@ -30,11 +29,11 @@ def getMessageWithMonInfos(pokemon):
 
 def getMessageWithotMonInfos(pokemon):
 	pokemon_id = pokemon.pokemonId
-	form = u.getForm(pokemon_id,pokemon.form)
-	gender = u.getGender(pokemon.gender)
-	weather = u.getWeather(pokemon.weather)
-	duration = u.getPokemonDurationTime(pokemon.disappear_time)
-	disappear_time = u.getDisapearTime(pokemon.disappear_time)
+	form = pokemon.form
+	gender = pokemon.gender
+	weather = pokemon.weather
+	duration = pokemon.disappear_time
+	disappear_time = pokemon.disappear_time
 
 	message = "<b>Ein wildes " + pokemons_de[pokemon_id]+gender+"</b>"+ weather +"\n"+str(form)+ "Noch " + str(duration) + " bis " + str(disappear_time) + "Uhr"
 

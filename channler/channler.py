@@ -40,12 +40,12 @@ class Channler(Thread):
 		if(self.type == 'pokemon'):
 			data = self.pokemonDbWrapper.getPokemon()
 			for pokemon in data:
-				if(not utils.checkIfSpawnIsExpired(pokemon.disappear_time)):
+				if(not utils.checkIfSpawnIsExpired(pokemon.disappear_timestamp)):
 					if(not self.sentManager.checkIfAlreadySent(pokemon.encounterId)):
 						if(utils.isInGeofence(self.includeArea, pokemon) and utils.isNotInGeofence(self.excludeArea, pokemon)):
 							if(self.filter.isFilterSatisfied(pokemon)):
 								self.notificationCnx.sendPokemonNotification(pokemon)
-								self.sentManager.addEncounterToAlreadySent(pokemon.encounterId, pokemon.disappear_time)
+								self.sentManager.addEncounterToAlreadySent(pokemon.encounterId, pokemon.disappear_timestamp)
 					else:
 						print "Found Pokemon but not sending cause is already sent"
 				else:

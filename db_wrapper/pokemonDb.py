@@ -1,5 +1,5 @@
 import connector
-from utils import utils
+from utils import utils as u
 from utils import configParser as cp
 from model import pokemon as pkm
 
@@ -33,6 +33,29 @@ class PokemonDb:
 
 		return result_set
 
+	def _parseRMRelationToMode(self, pokemonRelation):
+
+		pokemon = pkm.Pokemon()
+
+		pokemon.encounterId = pokemonRelation['encounter_id']
+		pokemon.pokemonId = pokemonRelation['pokemon_id']
+		pokemon.lat = pokemonRelation['latitude']
+		pokemon.lon = pokemonRelation['longitude']
+		pokemon.atkIv = pokemonRelation['individual_attack']
+		pokemon.defIv = pokemonRelation['individual_defense']
+		pokemon.staIv = pokemonRelation['individual_stamina']
+		pokemon.iv = u.calcIV(pokemon.atkIv, pokemon.defIv, pokemon.staIv)
+		pokemon.form = u.getForm(pokemon.pokemonId , pokemonRelation['form'])
+		pokemon.gender = u.getGender(pokemonRelation['gender'])
+		pokemon.weather = u.getWeather(pokemonRelation['weather_boosted_condition'])
+		pokemon.level = u.getPokemonLevel(pokemonRelation['cp_multiplier'])
+		pokemon.cp = pokemonRelation['cp']
+		pokemon.disappear_timestamp = pokemonRelation['disappear_time']
+		pokemon.disappear_time = u.getDisapearTime(pokemonRelation['disappear_time'])
+		pokemon.duration = u.getPokemonDurationTime(pokemonRelation['disappear_time'])
+
+		return pokemon
+
 	def getPokemonFromRdmDatabase(self):
 		databaseObj = connector.DatabaseConnector()
 		cnx = databaseObj.connect()
@@ -52,6 +75,7 @@ class PokemonDb:
 		return pokemons
 
 	def _parseRDMRalationToModel(self, pokemonRelation):
+
 		pokemon = pkm.Pokemon()
 
 		pokemon.encounterId = pokemonRelation['id']
@@ -62,13 +86,14 @@ class PokemonDb:
 		pokemon.atkIv = pokemonRelation['atk_iv']
 		pokemon.defIv = pokemonRelation['def_iv']
 		pokemon.staIv = pokemonRelation['sta_iv']
-		pokemon.form = pokemonRelation['form']
-		pokemon.gender = pokemonRelation['gender']
-		pokemon.weather = pokemonRelation['weather']
+		pokemon.form = u.getForm(pokemon.pokemonId , pokemonRelation['form'])
+		pokemon.gender = u.getGender(pokemonRelation['gender'])
+		pokemon.weather = u.getWeather(pokemonRelation['weather'])
 		pokemon.level = pokemonRelation['level']
 		pokemon.cp = pokemonRelation['cp']
-		pokemon.disappear_time = pokemonRelation['disappear_time']
-
+		pokemon.disappear_timestamp = pokemonRelation['disappear_time']
+		pokemon.disappear_time = u.getDisapearTime(pokemonRelation['disappear_time'])
+		pokemon.duration = u.getPokemonDurationTime(pokemonRelation['disappear_time'])
 
 		return pokemon
 
