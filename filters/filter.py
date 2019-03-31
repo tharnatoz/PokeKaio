@@ -23,7 +23,7 @@ class Filter:
 		return pokemonId in self.filterConfig['whitelist'] and pokemonId not in self.filterConfig['blacklist']
 
 	def filterIv(self, pokemon):
-		pokemonIv = getFullStats(pokemon)
+		pokemonIv = getFullStats(pokemon.atkIv, pokemon.defIv, pokemon.staIv)
 		maxIv = int(self.filterConfig['ivMax'])
 		minIv = int(self.filterConfig['ivMin'])
 		return pokemonIv <= maxIv and pokemonIv >= minIv and pokemon.pokemonId not in self.filterConfig['blacklist']

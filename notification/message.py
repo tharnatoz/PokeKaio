@@ -19,7 +19,7 @@ def getMessageWithMonInfos(pokemon):
 
 	lv = str(pokemon.level)
 	full_iv = pokemon.iv
-	duration = pokemon.disappear_time
+	duration = pokemon.duration
 	disappear_time = pokemon.disappear_time
 
 	message ="<b>Ein wildes " + pokemons_de[pokemon_id]+gender+"</b>"+ weather +"\n"+str(form)+	str(cp) +"WP - "+str(full_iv)+"%IV - LVL "+lv+"\n"+"(A"+str(iv_a)+"/D"+str(iv_d)+"/S"+str(iv_s)+") \n"+	"Noch " + str(duration) + " bis " + str(disappear_time) + "Uhr"
@@ -32,7 +32,7 @@ def getMessageWithotMonInfos(pokemon):
 	form = pokemon.form
 	gender = pokemon.gender
 	weather = pokemon.weather
-	duration = pokemon.disappear_time
+	duration = pokemon.duration
 	disappear_time = pokemon.disappear_time
 
 	message = "<b>Ein wildes " + pokemons_de[pokemon_id]+gender+"</b>"+ weather +"\n"+str(form)+ "Noch " + str(duration) + " bis " + str(disappear_time) + "Uhr"
