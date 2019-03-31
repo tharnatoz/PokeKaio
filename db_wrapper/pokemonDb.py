@@ -31,7 +31,11 @@ class PokemonDb:
 		cursor.close()
 		cnx.close()
 
-		return result_set
+		pokemons = []
+		for pokemonRelation in result_set:
+			pokemons.append(self._parseRMRelationToMode(pokemonRelation))
+
+		return pokemons
 
 	def _parseRMRelationToMode(self, pokemonRelation):
 
@@ -54,11 +58,7 @@ class PokemonDb:
 		pokemon.disappear_time = u.getDisapearTime(pokemonRelation['disappear_time'])
 		pokemon.duration = u.getPokemonDurationTime(pokemonRelation['disappear_time'])
 
-		pokemons = []
-		for pokemonRelation in result_set:
-			pokemons.append(self._parseRDMRalationToModel(pokemonRelation))
-
-		return pokemons
+		return pokemon
 
 	def getPokemonFromRdmDatabase(self):
 		databaseObj = connector.DatabaseConnector()
