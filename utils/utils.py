@@ -65,10 +65,14 @@ def getFullStats (iv_a, iv_d, iv_s):
 		return iv_a + iv_d + iv_s
 
 def calcIV (iv_a, iv_d, iv_s):
+	if iv_a is None:
+		return -1
 	i = (iv_a + iv_d + iv_s) * 100 / 45
 	return round(i)
 
 def getPokemonLevel(cpMultiplier):
+	if cpMultiplier is None:
+		return -1
 	if cpMultiplier < 0.734:
 		pokemonLevel = (58.35178527 * cpMultiplier * cpMultiplier - 2.838007664 * cpMultiplier + 0.8539209906)
 	else:
@@ -80,12 +84,11 @@ def getPokemonLevel(cpMultiplier):
 
 # returns the dissapear time in human readable H/M/S format
 def getDisapearTime(disappear_time):
-	disappear_time = disappear_time + dt.timedelta(hours=1)
-	return disappear_time.time()
+	return datetime_from_utc_to_local(disappear_time).time()
 
 # returns a string "MMm SSs"
 def getPokemonDurationTime(disappear_time):
-	duration = ( disappear_time + dt.timedelta(hours=1) ) - dt.datetime.now()
+	duration = datetime_from_utc_to_local(disappear_time) - dt.datetime.now()
 	totsec = duration.total_seconds()
 	if(totsec > 0):
 		m = (totsec%3600) // 60
@@ -95,9 +98,14 @@ def getPokemonDurationTime(disappear_time):
 		return "{:02d}m {:02d}s".format(int(0), int(0))
 
 def checkIfSpawnIsExpired(disappear_time):
-	duration = ( disappear_time + dt.timedelta(hours=1) ) - dt.datetime.now()
+	duration = datetime_from_utc_to_local(disappear_time) - dt.datetime.now()
 	totsec = duration.total_seconds()
 	if(totsec > 0):
 		return False
 	else:
 		return True
+
+def datetime_from_utc_to_local(utc_datetime):
+    now_timestamp = time.time()
+    offset = datetime.fromtimestamp(now_timestamp) - datetime.utcfromtimestamp(now_timestamp)
+    return utc_datetime + offset
