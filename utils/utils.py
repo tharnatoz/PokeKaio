@@ -28,17 +28,17 @@ def parseGeofence(geofenceFilePath):
 				polygon_array.append(point_tuple)
 		return Polygon(polygon_array)
 
-def isInGeofence(geofence, pokemon):
+def isInGeofence(geofence, lat, lon):
 	if (not geofence):
 		return True
 	else:
-		return geofence.contains(Point(pokemon['latitude'],pokemon['longitude']))
+		return geofence.contains(Point(lat, lon))
 
-def isNotInGeofence(geofence, pokemon):
+def isNotInGeofence(geofence, lat, lon):
 	if (not geofence):
 		return True
 	else:
-		return not geofence.contains(Point(pokemon['latitude'],pokemon['longitude']))
+		return not geofence.contains(Point(lat, lon))
 
 def getGender(gender):
 	if gender== 1:
@@ -58,11 +58,11 @@ def getForm(pokemon_id, form):
 	else:
 		return ""
 
-def getFullStats (pokemon):
-	if pokemon['individual_attack'] is None:
+def getFullStats (iv_a, iv_d, iv_s):
+	if iv_a is None:
 		return -1
 	else:
-		return pokemon['individual_attack'] + pokemon['individual_defense'] + pokemon['individual_stamina']
+		return iv_a + iv_d + iv_s
 
 def calcIV (iv_a, iv_d, iv_s):
 	i = (iv_a + iv_d + iv_s) * 100 / 45

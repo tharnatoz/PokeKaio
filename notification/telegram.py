@@ -38,8 +38,8 @@ class Telegram:
 
 	def sendPokemonNotification(self, pokemon):
 		# get Sticker
-		if(str(pokemon['pokemon_id']) in self.stickers['sticker_pkl']):
-			self.sendSticker(self.stickers['sticker_pkl'][str(pokemon['pokemon_id'])])
+		if(str(pokemon.pokemonId) in self.stickers['sticker_pkl']):
+			self.sendSticker(self.stickers['sticker_pkl'][str(pokemon.pokemonId)])
 		msg = message.getMessage(pokemon)
 		self.sendMessage(msg)
-		self.sendLocation(pokemon['latitude'], pokemon['longitude'])
+		self.sendLocation(pokemon.lat, pokemon.lon)
