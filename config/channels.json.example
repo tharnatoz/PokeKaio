@@ -1,0 +1,38 @@
+{
+	"pokemon": [
+		{
+			"name": "Iv100",
+			"type": "pokemon",
+			"isActive": "true",
+			"messenger": "telegram",
+			"channelId": "YOUR_CHANNEL_ID",
+			"botToken": "YOUR_BOT_TOKEN",
+			"geofence": "PATH/TO/YOUR/GEOFENCE",
+			"geofence_exclude": "",
+			"filter": {
+				"type": "iv",
+				"whitelist": [],
+				"blacklist": [19],
+				"ivMax": "45",
+				"ivMin": "45"
+			}
+		},
+		{
+			"name": "WhiteList",
+			"type": "pokemon",
+			"isActive": "true",
+			"messenger": "telegram",
+			"channelId": "YOUR_CHANNEL_ID",
+			"botToken": "YOUR_BOT_TOKEN",
+			"geofence": "PATH/TO/YOUR/GEOFENCE",
+			"geofence_exclude": "",
+			"filter": {
+				"type": "whitelist",
+				"whitelist": [19,90,92, 147, 198, 201],
+				"blacklist": [],
+				"ivMax": "",
+				"ivMin": ""
+			}
+		}
+	]
+}

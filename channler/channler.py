@@ -35,18 +35,16 @@ class Channler(Thread):
 		print "Channel " + self.channelName + " is up"
 
 	def check(self):
-		# first get data
-		# print "Thread: " + self.threadName + " is checking data"
+
 		if(self.type == 'pokemon'):
 			data = self.pokemonDbWrapper.getPokemon()
-
 			for pokemon in data:
-				if(not utils.checkIfSpawnIsExpired(pokemon['disappear_time'])):
-					if(not self.sentManager.checkIfAlreadySent(pokemon['encounter_id'])):
-						if(utils.isInGeofence(self.includeArea, pokemon) and utils.isNotInGeofence(self.excludeArea, pokemon)):
+				if(not utils.checkIfSpawnIsExpired(pokemon.disappear_timestamp)):
+					if(not self.sentManager.checkIfAlreadySent(pokemon.encounterId)):
+						if(utils.isInGeofence(self.includeArea, pokemon.lat, pokemon.lon) and utils.isNotInGeofence(self.excludeArea, pokemon.lat, pokemon.lon)):
 							if(self.filter.isFilterSatisfied(pokemon)):
 								self.notificationCnx.sendPokemonNotification(pokemon)
-								self.sentManager.addEncounterToAlreadySent(pokemon['encounter_id'], pokemon['disappear_time'])
+								self.sentManager.addEncounterToAlreadySent(pokemon.encounterId, pokemon.disappear_timestamp)
 					else:
 						print "Found Pokemon but not sending cause is already sent"
 				else:
