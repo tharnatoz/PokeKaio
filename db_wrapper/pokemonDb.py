@@ -20,21 +20,26 @@ class PokemonDb:
 			raise ValueError('Unknown schema ' + self.schema + ".")
 
 	def getPokemonFromRocketmapDatabase(self):
-		databaseObj = connector.DatabaseConnector()
-		cnx = databaseObj.connect()
+		try:
+			databaseObj = connector.DatabaseConnector()
+			cnx = databaseObj.connect()
 
-		cursor = cnx.cursor(dictionary=True)
-		allVisiblePokemon = ("SELECT * FROM pokemon WHERE disappear_time > CONVERT_TZ(NOW(), @@session.time_zone, '+00:00');")
-		cursor.execute(allVisiblePokemon)
-		result_set = cursor.fetchall()
+			cursor = cnx.cursor(dictionary=True)
+			allVisiblePokemon = ("SELECT * FROM pokemon WHERE disappear_time > CONVERT_TZ(NOW(), @@session.time_zone, '+00:00');")
+			cursor.execute(allVisiblePokemon)
+			result_set = cursor.fetchall()
 
-		cursor.close()
-		cnx.close()
+			cursor.close()
+			cnx.close()
 
-		pokemons = []
-		for pokemonRelation in result_set:
-			pokemons.append(self._parseRMRelationToMode(pokemonRelation))
+			pokemons = []
+			for pokemonRelation in result_set:
+				pokemons.append(self._parseRMRelationToMode(pokemonRelation))
 
+		except Exception as e:
+				print (e)
+				pokemon = []
+		
 		return pokemons
 
 	def _parseRMRelationToMode(self, pokemonRelation):
@@ -61,21 +66,25 @@ class PokemonDb:
 		return pokemon
 
 	def getPokemonFromRdmDatabase(self):
-		databaseObj = connector.DatabaseConnector()
-		cnx = databaseObj.connect()
+		try:
+			databaseObj = connector.DatabaseConnector()
+			cnx = databaseObj.connect()
 
-		cursor = cnx.cursor(dictionary=True)
-		allVisiblePokemon = ("SELECT from_unixtime(expire_timestamp) AS disappear_time, id, pokemon_id, form, atk_iv, def_iv, sta_iv, gender, cp, weather, lat, lon, iv, level FROM pokemon WHERE from_unixtime(expire_timestamp) > CONVERT_TZ(NOW(), @@session.time_zone, '+00:00');")
-		cursor.execute(allVisiblePokemon)
-		result_set = cursor.fetchall()
+			cursor = cnx.cursor(dictionary=True)
+			allVisiblePokemon = ("SELECT from_unixtime(expire_timestamp) AS disappear_time, id, pokemon_id, form, atk_iv, def_iv, sta_iv, gender, cp, weather, lat, lon, iv, level FROM pokemon WHERE from_unixtime(expire_timestamp) > CONVERT_TZ(NOW(), @@session.time_zone, '+00:00');")
+			cursor.execute(allVisiblePokemon)
+			result_set = cursor.fetchall()
 
-		cursor.close()
-		cnx.close()
+			cursor.close()
+			cnx.close()
 
-		pokemons = []
-		for pokemonRelation in result_set:
-			pokemons.append(self._parseRDMRalationToModel(pokemonRelation))
-
+			pokemons = []
+			for pokemonRelation in result_set:
+				pokemons.append(self._parseRDMRalationToModel(pokemonRelation))
+		except Exception as e:
+			print (e)
+			pokemons = []
+		
 		return pokemons
 
 	def _parseRDMRalationToModel(self, pokemonRelation):
