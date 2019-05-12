@@ -11,7 +11,6 @@ class PokemonDb:
 		config = cp.readConfig()
 		self.schema = config.get('database', 'db_schema')
 		self.lastDatabseRequestTime = time.time()
-		print("Using schema", self.schema)
 
 	def getPokemon(self):
 		if(self.schema == 'rm'):
