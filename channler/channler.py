@@ -24,6 +24,7 @@ class Channler(Thread):
 		self.excludeArea = utils.parseGeofence(channelConfig['geofence_exclude'])
 		self.sentManager = sm.SentManager()
 		self.pokemonDbWrapper = monDb.PokemonDb()
+		
 
 		if(self.messenger == 'telegram'):
 			self.notificationCnx = telegram.Telegram(self.botToken, self.channelId)
@@ -38,6 +39,7 @@ class Channler(Thread):
 
 		if(self.type == 'pokemon'):
 			data = self.pokemonDbWrapper.getPokemon()
+			print ("Found " + str(len(data)) + " new Pokemon")
 			for pokemon in data:
 				if(not utils.checkIfSpawnIsExpired(pokemon.disappear_timestamp)):
 					if(not self.sentManager.checkIfAlreadySent(pokemon.encounterId)):
