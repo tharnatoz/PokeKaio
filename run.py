@@ -45,11 +45,12 @@ if __name__ == "__main__":
 
 	for channel in channelList:
 			channel.start()
-
-	while(True):
-		for channel in channelList:
-			channel.check()
-			logger.info("%s is now waiting for %d seconds", channel.channelName, checkInterval)
-		time.sleep(checkInterval)
-
+	try:
+		while(True):
+			for channel in channelList:
+				channel.check()
+				logger.info("%s is now waiting for %d seconds", channel.channelName, checkInterval)
+			time.sleep(checkInterval)
+	except exception as e:
+		print e
 
