@@ -73,7 +73,7 @@ Currently PokeKaio supports 2 Types of filter. IV and a Whitlist filter for a Su
   
 
 **IV** 
-* set you min and max IV if you only want a specific IV then set for e.g. ```"minIv": "45"``` and ```"maxIv": "45"``` for a 100IV Channel
+* set min and max IV if you only want a specific IV then set for e.g. ```"minIv": "45"``` and ```"maxIv": "45"``` for a 100IV Channel
 ```  
   "filter": {
     "type": "iv",
@@ -83,6 +83,17 @@ Currently PokeKaio supports 2 Types of filter. IV and a Whitlist filter for a Su
     "ivMin": "44"
    }
 ```
-**Blacklist** The Blacklist is for every filter, each Pokemon Id in the list will be ignored
 
+**Whitelist IV** 
+* set min and max IV if you only want a specific IV then set for e.g. ```"minIv": "45"``` and ```"maxIv": "45"``` for a 100IV Channel
+```  
+  "filter": {
+    "type": "whitelist_iv",
+    "whitelist": [201,1,149],
+    "blacklist": [66,100],
+    "ivMax": "45",
+    "ivMin": "44"
+   }
+```
+**Blacklist** The Blacklist is for every filter, each Pokemon Id in the list will be ignored, even if the ids are in the whitelist
 
