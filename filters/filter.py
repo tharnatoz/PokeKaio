@@ -3,7 +3,7 @@ from utils.utils import getFullStats
 class Filter:
 
 	def __init__(self, filterOptions):
-		self.availableFilterTypes = ["whitelist", 'iv']
+		self.availableFilterTypes = ["whitelist", 'iv', 'whitelist_iv']
 
 		if filterOptions['type'] not in self.availableFilterTypes:
 			raise ValueError('Unknown filter type ' + filterOptions['type'] + '. Please check channels.json')
