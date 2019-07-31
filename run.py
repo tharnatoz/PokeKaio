@@ -8,13 +8,16 @@ import logging
 from channler import channler
 from utils import configParser as cp
 
-
+version = '1.1.0'
 
 if __name__ == "__main__":
 
 	logging.basicConfig( format = '%(asctime)s  %(levelname)-10s %(threadName)s  %(name)s -- %(message)s',level=logging.INFO)
 	logger = logging.getLogger(__name__)
 
+	logger.info("#############################")
+	logger.info("PokeKaio - v. %s",  version)
+	logger.info("#############################")
 	logger.info("Load config...")
 	# loadconfig
 	config = cp.readConfig()
