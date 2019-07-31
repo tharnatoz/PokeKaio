@@ -2,14 +2,15 @@ import connector
 from utils import utils as u
 from utils import configParser as cp
 from model import pokemon as pkm
-
+import datetime
+import time
 class PokemonDb:
 
 	def __init__(self):
 		# get database schema
 		config = cp.readConfig()
 		self.schema = config.get('database', 'db_schema')
-		print("Using schema", self.schema)
+		self.lastDatabseRequestTime = time.time()
 
 	def getPokemon(self):
 		if(self.schema == 'rm'):
@@ -31,6 +32,8 @@ class PokemonDb:
 
 			cursor.close()
 			cnx.close()
+
+			self.lastDatabseRequestTime = time.time()
 
 			pokemons = []
 			for pokemonRelation in result_set:
@@ -67,20 +70,24 @@ class PokemonDb:
 
 	def getPokemonFromRdmDatabase(self):
 		try:
+		
 			databaseObj = connector.DatabaseConnector()
 			cnx = databaseObj.connect()
 
 			cursor = cnx.cursor(dictionary=True)
-			allVisiblePokemon = ("SELECT from_unixtime(expire_timestamp) AS disappear_time, id, pokemon_id, form, atk_iv, def_iv, sta_iv, gender, cp, weather, lat, lon, iv, level FROM pokemon WHERE from_unixtime(expire_timestamp) > CONVERT_TZ(NOW(), @@session.time_zone, '+00:00');")
+			allVisiblePokemon = ("SELECT from_unixtime(expire_timestamp) AS disappear_time, id, pokemon_id, form, atk_iv, def_iv, sta_iv, gender, cp, weather, lat, lon, iv, level FROM pokemon WHERE updated >" + str(self.lastDatabseRequestTime) +";")
 			cursor.execute(allVisiblePokemon)
 			result_set = cursor.fetchall()
 
 			cursor.close()
 			cnx.close()
 
+			self.lastDatabseRequestTime = time.time()
+			
 			pokemons = []
 			for pokemonRelation in result_set:
 				pokemons.append(self._parseRDMRalationToModel(pokemonRelation))
+			
 		except Exception as e:
 			print (e)
 			pokemons = []

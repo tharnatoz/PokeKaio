@@ -15,7 +15,6 @@ class SentManager:
 		return False
 
 	def addEncounterToAlreadySent(self, encounter_id, disappear_time):
-		print("Add enc to already sent")
 		enc = self.getAlreadySentObj(encounter_id, disappear_time)
 		self.already_sent.append(enc)
 
