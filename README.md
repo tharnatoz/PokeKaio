@@ -85,7 +85,7 @@ Currently PokeKaio supports 2 Types of filter. IV and a Whitlist filter for a Su
 ```
 
 **Whitelist IV** 
-* set min and max IV if you only want a specific IV then set for e.g. ```"minIv": "45"``` and ```"maxIv": "45"``` for a 100IV Channel
+* set min and max IV if you only want a specific IV then set for e.g. ```"minIv": "45"``` and ```"maxIv": "45"``` and the Pokemon Id's that shoult report.
 ```  
   "filter": {
     "type": "whitelist_iv",
