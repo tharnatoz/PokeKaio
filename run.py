@@ -8,7 +8,7 @@ import logging
 from channler import channler
 from utils import configParser as cp
 
-version = '1.1.0'
+version = '1.1.1'
 
 if __name__ == "__main__":
 
