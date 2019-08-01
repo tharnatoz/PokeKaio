@@ -54,6 +54,6 @@ if __name__ == "__main__":
 				channel.check()
 				logger.info("%s is now waiting for %d seconds", channel.channelName, checkInterval)
 			time.sleep(checkInterval)
-	except exception as e:
+	except Exception as e:
 		print e
 
