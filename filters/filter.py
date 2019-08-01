@@ -17,7 +17,7 @@ class Filter:
 		elif (self.filterConfig['type'] == "iv"):
 			return self.filterIv(pokemon)
 		elif (self.filterConfig['type'] == "whitelist_iv"):
-			return self.filterIv(pokemon)
+			return self.filterWhiteListIv(pokemon)
 		else:
 			return false
 
