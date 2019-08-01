@@ -34,4 +34,4 @@ class Filter:
 		pokemonIv = getFullStats(pokemon.atkIv, pokemon.defIv, pokemon.staIv)
 		maxIv = int(self.filterConfig['ivMax'])
 		minIv = int(self.filterConfig['ivMin'])
-		return pokemonIv <= maxIv and pokemonIv >= minIv and pokemonId in self.filterConfig['whitelist'] and pokemon.pokemonId not in self.filterConfig['blacklist']
+		return pokemonIv <= maxIv and pokemonIv >= minIv and pokemon.pokemonId in self.filterConfig['whitelist'] and pokemon.pokemonId not in self.filterConfig['blacklist']

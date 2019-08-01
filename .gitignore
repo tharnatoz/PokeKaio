@@ -9,3 +9,5 @@ config/geofence/*
 !config/geofence/
 
 *.out
+
+*.vscode
