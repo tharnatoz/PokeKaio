@@ -19,7 +19,8 @@ class PokemonDb:
 			return self.getPokemonFromRdmDatabase()
 		else:
 			raise ValueError('Unknown schema ' + self.schema + ".")
-
+	
+	# function to get the pokemondata from Rocketmap database
 	def getPokemonFromRocketmapDatabase(self):
 		try:
 			databaseObj = connector.DatabaseConnector()
@@ -37,7 +38,7 @@ class PokemonDb:
 
 			pokemons = []
 			for pokemonRelation in result_set:
-				pokemons.append(self._parseRMRelationToMode(pokemonRelation))
+				pokemons.append(self._parseRMRelationToModel(pokemonRelation))
 
 		except Exception as e:
 				print (e)
@@ -45,7 +46,8 @@ class PokemonDb:
 		
 		return pokemons
 
-	def _parseRMRelationToMode(self, pokemonRelation):
+	# parse Rocketmap data to model
+	def _parseRMRelationToModel(self, pokemonRelation):
 
 		pokemon = pkm.Pokemon()
 
@@ -65,9 +67,12 @@ class PokemonDb:
 		pokemon.disappear_timestamp = pokemonRelation['disappear_time']
 		pokemon.disappear_time = u.getDisapearTime(pokemonRelation['disappear_time'])
 		pokemon.duration = u.getPokemonDurationTime(pokemonRelation['disappear_time'])
+		pokemon.expireTimestampVerified = 'not available'
+
 
 		return pokemon
 
+	# get Pokemondata from RDM
 	def getPokemonFromRdmDatabase(self):
 		try:
 		
@@ -75,7 +80,7 @@ class PokemonDb:
 			cnx = databaseObj.connect()
 
 			cursor = cnx.cursor(dictionary=True)
-			allVisiblePokemon = ("SELECT from_unixtime(expire_timestamp) AS disappear_time, id, pokemon_id, form, atk_iv, def_iv, sta_iv, gender, cp, weather, lat, lon, iv, level FROM pokemon WHERE updated >" + str(self.lastDatabseRequestTime) +";")
+			allVisiblePokemon = ("SELECT from_unixtime(expire_timestamp) AS disappear_time, id, pokemon_id, form, atk_iv, def_iv, sta_iv, gender, cp, weather, lat, lon, iv, level, expire_timestamp_verified FROM pokemon WHERE updated >" + str(self.lastDatabseRequestTime) +";")
 			cursor.execute(allVisiblePokemon)
 			result_set = cursor.fetchall()
 
@@ -86,7 +91,7 @@ class PokemonDb:
 			
 			pokemons = []
 			for pokemonRelation in result_set:
-				pokemons.append(self._parseRDMRalationToModel(pokemonRelation))
+				pokemons.append(self._parseRDMRelationToModel(pokemonRelation))
 			
 		except Exception as e:
 			print (e)
@@ -94,7 +99,8 @@ class PokemonDb:
 		
 		return pokemons
 
-	def _parseRDMRalationToModel(self, pokemonRelation):
+	# parse Rdm-Data to model
+	def _parseRDMRelationToModel(self, pokemonRelation):
 
 		pokemon = pkm.Pokemon()
 
@@ -114,6 +120,7 @@ class PokemonDb:
 		pokemon.disappear_timestamp = pokemonRelation['disappear_time']
 		pokemon.disappear_time = u.getDisapearTime(pokemonRelation['disappear_time'])
 		pokemon.duration = u.getPokemonDurationTime(pokemonRelation['disappear_time'])
+		pokemon.expireTimestampVerified = pokemonRelation['expire_timestamp_verified']
 
 		return pokemon
 
