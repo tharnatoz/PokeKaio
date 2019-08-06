@@ -11,20 +11,6 @@ from utils import configParser as cp
 
 version = '1.1.6'
 
-class ServiceExit(Exception):
-    """
-    Custom exception which is used to trigger the clean exit
-    of all running threads and the main program.
-    """
-    pass
- 
- 
-def service_shutdown(signum, frame):
-    print('Caught signal %d' % signum)
-    raise ServiceExit
-
-
-
 if __name__ == "__main__":
 
 	logging.basicConfig( format = '%(asctime)s  %(levelname)-10s %(threadName)s  %(name)s -- %(message)s',level=logging.INFO)
