@@ -30,7 +30,7 @@ class Channler(Thread):
 		
 
 		if(self.messenger == 'telegram'):
-			self.notificationCnx = telegram.Telegram(self.botToken, self.channelId)
+			self.notificationCnx = telegram.Telegram(self.botToken, self.channelId, self.channelName)
 		else:
 			raise ValueError('Unknown messenger type ' + self.messenger + " on "+self.channelName+". Please check channels.json")
 

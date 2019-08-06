@@ -8,7 +8,7 @@ import logging
 from channler import channler
 from utils import configParser as cp
 
-version = '1.1.4'
+version = '1.1.5'
 
 if __name__ == "__main__":
 
@@ -48,12 +48,13 @@ if __name__ == "__main__":
 
 	for channel in channelList:
 			channel.start()
-	try:
-		while(True):
+	while(True):
+		try:
+		
 			for channel in channelList:
 				channel.check()
 				logger.info("%s is now waiting for %d seconds", channel.channelName, checkInterval)
 			time.sleep(checkInterval)
-	except Exception as e:
-		print e
+		except Exception as e:
+			logger.error("An wild Exception appeared: %s", e) 
 
