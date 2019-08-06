@@ -9,8 +9,7 @@ import logging
 from channler import channler
 from utils import configParser as cp
 
-
-version = '1.1.4'
+version = '1.1.5'
 
 class ServiceExit(Exception):
     """
