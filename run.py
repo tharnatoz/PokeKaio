@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# coding: utf8
+# -*- coding: utf-8 -*-
 import json
 import time
 import signal
@@ -9,7 +9,7 @@ import logging
 from channler import channler
 from utils import configParser as cp
 
-version = '1.1.5'
+version = '1.1.6'
 
 class ServiceExit(Exception):
     """
