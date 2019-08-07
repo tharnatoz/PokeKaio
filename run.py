@@ -39,7 +39,6 @@ if __name__ == "__main__":
 
 	
 
-	exit()
 	# load channels
 	channelList = []
 
@@ -58,11 +57,6 @@ if __name__ == "__main__":
 	if (len(channelList) == 0):
 		logger.error('No Channels found. Please go to config/channels.json and configure at least one')
 		exit()
-
-	# Register the signal handlers
-	#signal.signal(signal.SIGTERM, service_shutdown)
-	
-	#signal.signal(signal.SIGINT, service_shutdown)
 
 	for channel in channelList:
 		channel.setDaemon(True)
