@@ -10,3 +10,7 @@
 
 [channler]
 checkInterval = 30
+
+[ReverseGeocoding]
+enableReverseGeocoding = false
+#google_maps_api_key = 

@@ -26,6 +26,19 @@ if __name__ == "__main__":
 
 	logger.info("Using Databaseshema: %s" , config.get('database', 'db_schema'))
 
+
+	# check for reverse geo coding
+	reverseGeoCoding = bool(config.get('ReverseGeocoding', 'enable_reverse_geocoding'))
+	if (reverseGeoCoding):
+		googleMapsApiKey = config.get('ReverseGeocoding', 'google_maps_api_key')
+		if googleMapsApiKey == "":
+			logger.error('Please add a google maps api key to use reverse geocoding or disable this feature')
+			exit()
+
+	
+
+	exit()
+	# load channels
 	channelList = []
 
 	with open('config/channels.json') as f:
