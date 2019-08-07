@@ -2,13 +2,14 @@
 # -*- coding: utf-8 -*-
 import json
 import time
+import signal
 import logging
 
 
 from channler import channler
 from utils import configParser as cp
 
-version = '1.1.6'
+version = '1.2.0'
 
 if __name__ == "__main__":
 
@@ -19,6 +20,7 @@ if __name__ == "__main__":
 	logger.info("PokeKaio - v. %s",  version)
 	logger.info("#############################")
 	logger.info("Load config...")
+	
 	# loadconfig
 	config = cp.readConfig()
 	checkInterval = int(config.get('channler', 'checkInterval'))
@@ -32,29 +34,30 @@ if __name__ == "__main__":
 		channelsConfig = json.load(f)
 
 	# create pkm channel
-	i = 1
 	for channel in channelsConfig['pokemon']:
 		if (channel['isActive'] == "true"):
-			tmpChannler = channler.Channler(channel, str(i))
+			tmpChannler = channler.Channler(channel, checkInterval)
 			channelList.append(tmpChannler)
 			logger.info("Found channel config: %s", tmpChannler.channelName)
 
-			i += 1
 	logger.info("A total of %d channels will be initilized", len(channelList))
 
 	if (len(channelList) == 0):
 		logger.error('No Channels found. Please go to config/channels.json and configure at least one')
 		exit()
 
-	for channel in channelList:
-			channel.start()
-	while(True):
-		try:
-		
-			for channel in channelList:
-				channel.check()
-				logger.info("%s is now waiting for %d seconds", channel.channelName, checkInterval)
-			time.sleep(checkInterval)
-		except Exception as e:
-			logger.error("An wild Exception appeared: %s", e) 
+	# Register the signal handlers
+	#signal.signal(signal.SIGTERM, service_shutdown)
+	
+	#signal.signal(signal.SIGINT, service_shutdown)
 
+	for channel in channelList:
+		channel.setDaemon(True)
+		channel.start()
+	
+		# run forever
+	while(True):
+		time.sleep(0.5)
+
+ 
+	print('Exiting main program')	

@@ -1,5 +1,5 @@
-from threading import Thread
 import time
+import threading
 import logging
 
 from utils import utils
@@ -8,12 +8,11 @@ from filters import filter
 from db_wrapper import pokemonDb as monDb
 from utils import sentManager as sm
 
-class Channler(Thread):
+class Channler(threading.Thread):
 
-	def __init__(self, channelConfig, name):
-		Thread.__init__(self)
+	def __init__(self, channelConfig, checkInterval):
+		threading.Thread.__init__(self)
 
-		self.threadName = name
 		self.channelName = channelConfig['name']
 		self.messenger = channelConfig['messenger']
 		self.type = channelConfig['type']
@@ -24,7 +23,7 @@ class Channler(Thread):
 		self.excludeArea = utils.parseGeofence(channelConfig['geofence_exclude'])
 		self.sentManager = sm.SentManager()
 		self.pokemonDbWrapper = monDb.PokemonDb()
-
+		self.checkInterval = checkInterval
 		logging.basicConfig( format = '%(asctime)s  %(levelname)-10s %(threadName)s  %(name)s -- %(message)s',level=logging.INFO)
 		self.logger = logging.getLogger(__name__)
 		
@@ -35,8 +34,14 @@ class Channler(Thread):
 			raise ValueError('Unknown messenger type ' + self.messenger + " on "+self.channelName+". Please check channels.json")
 
 	def run(self):
-		self.logger.info("Thread " + self.threadName + " is initialized and ready to use")
-		self.logger.info("Channel " + self.channelName + " is up")
+		self.logger.info("Thread is initialized and ready to use")
+		self.logger.info("Channel %s is up", self.channelName)
+
+		while True:
+			self.check()
+			self.logger.info("%s is now waiting for %d seconds", self.channelName, self.checkInterval )
+			time.sleep(self.checkInterval)
+
 
 	def check(self):
 
