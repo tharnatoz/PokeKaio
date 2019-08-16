@@ -84,11 +84,11 @@ def getPokemonLevel(cpMultiplier):
 
 # returns the dissapear time in human readable H/M/S format
 def getDisapearTime(disappear_time):
-	return datetime_from_utc_to_local(disappear_time).time()
+	return disappear_time.time()
 
 # returns a string "MMm SSs"
 def getPokemonDurationTime(disappear_time):
-	duration = datetime_from_utc_to_local(disappear_time) - dt.datetime.now()
+	duration = disappear_time - dt.datetime.now()
 	totsec = duration.total_seconds()
 	if(totsec > 0):
 		m = (totsec%3600) // 60
@@ -98,7 +98,7 @@ def getPokemonDurationTime(disappear_time):
 		return "{:02d}m {:02d}s".format(int(0), int(0))
 
 def checkIfSpawnIsExpired(disappear_time):
-	duration = datetime_from_utc_to_local(disappear_time) - dt.datetime.now()
+	duration = disappear_time - dt.datetime.now()
 	totsec = duration.total_seconds()
 	if(totsec > 0):
 		return False
