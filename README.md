@@ -2,8 +2,8 @@
 ### Welcome to PokeKaio - your Kaioshin that supports you to get the very best
 
 ### What is PokeKaio
-PokeKaio is a RocketMap extensions that checks the database for Pokemon and sends you a message to a telegram channel.
-You will need a scanner that collects the Pokemon data and writ it into your RocketMap database, PokeKaio then checks this data and sends you a message if a desired one is found.
+PokeKaio is a RocketMap extension that checks the database for Pokemon and sends you a message to a telegram channel.
+You will need a scanner that collects the Pokemon data and write it into your RocketMap database, PokeKaio then checks this data and sends you a message if a desired one is found.
 
 
 ### Requirements
