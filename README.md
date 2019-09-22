@@ -55,7 +55,7 @@ add at the end of each line a  ;
 
 ```
 ##### Filter
-Currently PokeKaio supports 2 Types of filter. IV and a Whitlist filter for a Super Rare Channel for e.g.
+Currently PokeKaio supports 4 Types of filter. IV, Whitlist, Whitelist_IV and stats(for PvP-Mon) filter.
 
 **Whitelist**
 
@@ -67,7 +67,11 @@ Currently PokeKaio supports 2 Types of filter. IV and a Whitlist filter for a Su
     "whitelist": [147,201,214,317],
     "blacklist": [66,100],
     "ivMax": "",
-    "ivMin": ""
+    "ivMin": "",
+    "iVmaxAtk": "",
+    "iVminDef": "",
+    "iVminSta": "",
+    "maxCP": ""
    }
 ```   
   
@@ -80,7 +84,11 @@ Currently PokeKaio supports 2 Types of filter. IV and a Whitlist filter for a Su
     "whitelist": [],
     "blacklist": [66,100],
     "ivMax": "45",
-    "ivMin": "44"
+    "ivMin": "44",
+    "iVmaxAtk": "",
+    "iVminDef": "",
+    "iVminSta": "",
+    "maxCP": ""
    }
 ```
 
@@ -92,8 +100,27 @@ Currently PokeKaio supports 2 Types of filter. IV and a Whitlist filter for a Su
     "whitelist": [201,1,149],
     "blacklist": [66,100],
     "ivMax": "45",
-    "ivMin": "44"
+    "ivMin": "44",
+    "iVmaxAtk": "",
+    "iVminDef": "",
+    "iVminSta": "",
+    "maxCP": ""
+   }
+```
+
+**Stats** 
+* set  iVmaxAtk, iVminDef, iVminSta and maxCP if you want to, you can set blacklist filter.
+```  
+  "filter": {
+    "type": "stats",
+    "whitelist": [],
+    "blacklist": [],
+    "ivMax": "",
+    "ivMin": "",
+    "iVmaxAtk": "2",
+    "iVminDef": "14",
+    "iVminSta": "14",
+    "maxCP": "1500"
    }
 ```
 **Blacklist** The Blacklist is for every filter, each Pokemon Id in the list will be ignored, even if the ids are in the whitelist
-
