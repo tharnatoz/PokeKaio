@@ -26,6 +26,12 @@ visit [http://geo.jasparke.net/](http://geo.jasparke.net/)
 
 add at the end of each line a  ; 
 
+### Reverse Geocoding
+
+copy your [google api](https://developers.google.com/maps/documentation/geocoding/get-api-key) into config.ini
+and set ```enable_reverse_geocoding = true```
+
+
 ## Messanger Support
 
 ### Telegram
