@@ -12,5 +12,5 @@
 checkInterval = 30
 
 [ReverseGeocoding]
-enableReverseGeocoding = false
+enable_reverse_geocoding = false
 #google_maps_api_key = 
