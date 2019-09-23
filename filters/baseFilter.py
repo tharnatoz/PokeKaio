@@ -46,7 +46,7 @@ class BaseFilter:
     @return param bool
     '''
     @abstractmethod
-    def isSatisfied(self):
+    def isSatisfied(self, pokemon):
         pass
     
     '''

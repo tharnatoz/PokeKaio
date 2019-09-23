@@ -22,5 +22,9 @@ class Whitelist(BaseFilter):
         # test if the whitelist has at least one pokemon
         if(len(whitList) == 0):
             raise ValueError("The whitelist is empty. Please provide at least one Pokemon Id. ")
+
+        # test if a blacklist is set
+        if('blacklist' not in self.filterConfig):
+            raise ValueError("Missing Field \"black\" in filter configuration. Please provide at least an empty blacklist.")
         
-        self.logger.info("Filter config for whitelist is fine.")
+        self.logger.info("Filter config for mon_whitelist is fine.")
