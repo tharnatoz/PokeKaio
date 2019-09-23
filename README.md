@@ -8,13 +8,12 @@ You will need a scanner that collects the Pokemon data and write it into your Ro
 
 ### Requirements
 * Python 2.7
-* A [RocketMap](https://github.com/RocketMap/RocketMap) Database 
-* A Working Scanner to collect the data and writes it into you RM database
+* RDM-Sytem
 
 
 ### How to run
 
-- git clone ```https://github.com/RocketMap/RocketMap.git```
+- git clone ```git@github.com:tharnatoz/PokeKaio.git```
 - ```pip install -r requirements.txt ```
 - ```cp config/config.ini.example config/config.ini```
 - ```cp config/channels.json.example config/channels.ini```
