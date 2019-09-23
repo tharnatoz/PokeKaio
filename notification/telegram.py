@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# coding: utf8
+# -*- coding: utf-8 -*-
 
 from requests import get
 import message
@@ -25,6 +25,7 @@ class Telegram:
 	def sendMessage(self, message):
 		sendMessagePayload = {'text': message ,
 								'chat_id': self.channelId,
+								'disable_web_page_preview': True,
 								'parse_mode' : 'html'}
 		r = get(self.sendMessageURL, params = sendMessagePayload)
 
@@ -51,11 +52,11 @@ class Telegram:
 
 		return r
 
-	def sendPokemonNotification(self, pokemon):
+	def sendPokemonNotification(self, pokemon, address=""):
 		# get Sticker
 		if(str(pokemon.pokemonId) in self.stickers['sticker_pkl']):
 			self.sendSticker(self.stickers['sticker_pkl'][str(pokemon.pokemonId)])
-		msg = message.getMessage(pokemon)
+		msg = message.getMessage(pokemon, address)
 		self.sendMessage(msg)
 		self.sendLocation(pokemon.lat, pokemon.lon)
 

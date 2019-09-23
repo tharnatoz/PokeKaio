@@ -10,8 +10,10 @@ from utils import sentManager as sm
 
 class Channler(threading.Thread):
 
-	def __init__(self, channelConfig, checkInterval):
+
+	def __init__(self, channelConfig, checkInterval, reverseGeocoder):
 		threading.Thread.__init__(self)
+
 
 		self.channelName = channelConfig['name']
 		self.messenger = channelConfig['messenger']
@@ -24,6 +26,9 @@ class Channler(threading.Thread):
 		self.sentManager = sm.SentManager()
 		self.pokemonDbWrapper = monDb.PokemonDb()
 		self.checkInterval = checkInterval
+
+		self.rgc = reverseGeocoder
+
 		logging.basicConfig( format = '%(asctime)s  %(levelname)-10s %(threadName)s  %(name)s -- %(message)s',level=logging.INFO)
 		self.logger = logging.getLogger(__name__)
 		
@@ -44,7 +49,6 @@ class Channler(threading.Thread):
 
 
 	def check(self):
-
 		if(self.type == 'pokemon'):
 			data = self.pokemonDbWrapper.getPokemon()
 			self.logger.info("%s found %s new Pokemon", self.channelName, str(len(data)))
@@ -54,6 +58,9 @@ class Channler(threading.Thread):
 					if(not self.sentManager.checkIfAlreadySent(pokemon.encounterId)):
 						if(utils.isInGeofence(self.includeArea, pokemon.lat, pokemon.lon) and utils.isNotInGeofence(self.excludeArea, pokemon.lat, pokemon.lon)):
 							if(self.filter.isFilterSatisfied(pokemon)):
+								address = ""
+								if self.rgc is not None:
+									address = self.rgc.getAddress(pokemon.lat, pokemon.lon)
 								self.logger.info("Pokemon with encounter %s id will be sent to: %s",pokemon.encounterId, self.channelName)
-								self.notificationCnx.sendPokemonNotification(pokemon)
+								self.notificationCnx.sendPokemonNotification(pokemon, address)
 								self.sentManager.addEncounterToAlreadySent(pokemon.encounterId, pokemon.disappear_timestamp)
