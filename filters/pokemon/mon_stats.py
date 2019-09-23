@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from filters.baseFilter import BaseFilter
+from filters import helper
 
 class Mon_Stats(BaseFilter):
 
@@ -23,54 +24,39 @@ class Mon_Stats(BaseFilter):
     def testConfig(self):
        
         # test if a iVmaxAtk is set
-        if('iVmaxAtk' not in self.filterConfig):
-            raise ValueError("Missing Field \"iVmaxAtk\" in filter configuration. Please provide a valid filter configuration for "+self.filterType +".")
-        
+        helper.hasOwnProperty(self.filterConfig, 'iVmaxAtk')
+
         # test if a f_monDef is set
-        if('iVminDef' not in self.filterConfig):
-            raise ValueError("Missing Field \"iVminDef\" in filter configuration. Please provide a valid filter configuration for "+self.filterType +".")
-        
+        helper.hasOwnProperty(self.filterConfig, 'iVminDef')
+
         # test if a f_monSta is set
-        if('iVminSta' not in self.filterConfig):
-            raise ValueError("Missing Field \"iVminSta\" in filter configuration. Please provide a valid filter configuration for "+self.filterType +".")
-        
+        helper.hasOwnProperty(self.filterConfig, 'iVminSta')
+
         # test if a f_monCP is set
-        if('maxCP' not in self.filterConfig):
-            raise ValueError("Missing Field \"maxCP\" in filter configuration. Please provide a valid filter configuration for "+self.filterType +".")
+        helper.hasOwnProperty(self.filterConfig, 'maxCP')
 
-        # cast to string
-        f_monAtk = str(self.filterConfig['iVmaxAtk'])
-        f_monDef = str(self.filterConfig['iVminDef'])
-        f_monSta = str(self.filterConfig['iVminSta'])
-        f_monCP = str(self.filterConfig['maxCP'])
+         # test if is value is numeric if its provided as string
+        helper.isStringDigit(self.filterConfig, 'iVmaxAtk')
+        helper.isStringDigit(self.filterConfig, 'iVminDef')
+        helper.isStringDigit(self.filterConfig, 'iVminSta')
+        helper.isStringDigit(self.filterConfig, 'maxCP')
 
+        # at this point we know the ivMax and ivMin value are mumeric and can cast to integer
+        f_monAtk = int(self.filterConfig['iVmaxAtk'])
+        f_monDef = int(self.filterConfig['iVminDef'])
+        f_monSta = int(self.filterConfig['iVminSta'])
+        f_monCP =  int(self.filterConfig['maxCP'])
 
-        # ivMax is digit?
-        if(not f_monAtk.isdigit()):
-            raise ValueError("iVmaxAtk Value Error. Allowed Valure are 0-15. Please check your iVmaxAtk settings in "+self.filterType +".")
-        # ivMin is digit?
-        if(not f_monDef.isdigit()):
-            raise ValueError("iVminDef Value Error. Allowed Valure are 0-15. Please check your iVminDef settings in "+self.filterType +".")
-        # ivMax is digit?
-        if(not f_monSta.isdigit()):
-            raise ValueError("iVminSta Value Error. Allowed Valure are 0-15. Please check your iVminSta settings in "+self.filterType +".")
-        # ivMin is digit?
-        if(not f_monCP.isdigit()):
-            raise ValueError("maxCP Value Error. Allowed Valure are digits [0-9]. Please check your maxCP settings in "+self.filterType +".")
-        
-        
         # iVmaxAtk is between 0 and 15
-        if(isinstance(f_monAtk, int) and f_monAtk >15 or f_monAtk < 0):
-            raise ValueError("ivMax Value Error. Allowed Valure are 0-15. Please check your iVmaxAtk settings in "+self.filterType +".")
+        helper.checkIfValueIsInRange(f_monAtk, 0, 15, 'iVmaxAtk', self.filterConfig['name'])
+
         # ivMin is between 0 and 15
-        if(isinstance(f_monDef, int) and f_monDef >15 or f_monDef < 0):
-            raise ValueError("iVminDef Value Error. Allowed Valure are 0-15. Please check your iVminDef settings in "+self.filterType +".")
-            # ivMin is between 0 and 15
-        if(isinstance(f_monSta, int) and f_monSta >15 or f_monSta < 0):
-            raise ValueError("ivMin Value Error. Allowed Valure are 0-15. Please check your iVminSta settings in "+self.filterType +".")
-        
+        helper.checkIfValueIsInRange(f_monDef, 0, 15, 'iVminDef', self.filterConfig['name'])
+
+        # ivMin is between 0 and 15
+        helper.checkIfValueIsInRange(f_monSta, 0, 15, 'iVminSta', self.filterConfig['name'])
+
         # test if a blacklist is set
-        if('blacklist' not in self.filterConfig):
-            raise ValueError("Missing Field \"black\" in filter configuration. Please provide at least an empty blacklist in mon_whitelist.")
-        
+        helper.testBlackList(self.filterConfig)
+
         self.logger.info("Filter config for mon_whitelist is fine.")

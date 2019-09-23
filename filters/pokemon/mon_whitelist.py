@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from filters.baseFilter import BaseFilter
+from filters import helper
 
 class Mon_Whitelist(BaseFilter):
 
@@ -13,18 +14,11 @@ class Mon_Whitelist(BaseFilter):
         
     
     def testConfig(self):
-        # test if a whitelist is set
-        if('whitelist' not in self.filterConfig):
-            raise ValueError("Missing Field \"whitelist\" in filter configuration. Please provide a valid filter configuration for mon_whitelist.")
         
-        whitList = self.filterConfig['whitelist']
-        
-        # test if the whitelist has at least one pokemon
-        if(len(whitList) == 0):
-            raise ValueError("The whitelist is empty. Please provide at least one Pokemon Id in mon_whitelist.")
+        # whitelist test
+        helper.testWhiteList(self.filterConfig)
 
         # test if a blacklist is set
-        if('blacklist' not in self.filterConfig):
-            raise ValueError("Missing Field \"black\" in filter configuration. Please provide at least an empty blacklist in mon_whitelist.")
+        helper.testBlackList(self.filterConfig)
         
         self.logger.info("Filter config for mon_whitelist is fine.")

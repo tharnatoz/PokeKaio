@@ -18,13 +18,13 @@ class BaseFilter:
         if ('dataType' in self.filterConfig):
             self.dataType = self.filterConfig['dataType']
         else:
-            raise ValueError("Missing Field: \"DataType\" in Filter. Please check your channels.json. Error raised in Filter with type:", self.filterType )
+            raise ValueError("Missing Field: 'DataType' in Filter. Please check your channels.json. Error raised in Filter with type:", self.filterType )
 
-        # name is optional
+        # name is required
         if ('name' in self.filterConfig):
             self.name = self.filterConfig['name']
         else:
-            self.name = "No Name set."
+            raise ValueError("Missing Field: 'name' in Filter. Please check your channels.json. Error raised in Filter with type:", self.filterType )
         
          # get logger instance
         logging.basicConfig( format = '%(asctime)s  %(levelname)-10s %(threadName)s  %(name)s -- %(message)s',level=logging.INFO)
