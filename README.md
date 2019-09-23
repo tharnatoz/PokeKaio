@@ -21,14 +21,14 @@ You will need a scanner that collects the Pokemon data and write it into your Ro
 - add your config in config.ini and channels.json (example configs are in .example files)
 
 
-#### Geofence
+### Geofence
 visit [http://geo.jasparke.net/](http://geo.jasparke.net/)
 
 add at the end of each line a  ; 
 
-## Messange Support
+## Messanger Support
 
-### Telegram Support
+### Telegram
 
 1. Create a Telegram Channel
 2. Copy channel link in channel_id
