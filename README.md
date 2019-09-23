@@ -21,13 +21,13 @@ You will need a scanner that collects the Pokemon data and write it into your Ro
 - add your config in config.ini and channels.json (example configs are in .example files)
 
 
-##### Geofence
+#### Geofence
 visit [http://geo.jasparke.net/](http://geo.jasparke.net/)
 
 add at the end of each line a  ; 
 
 
-##### Telegram Support
+#### Telegram Support
 
 1. Create a Telegram Channel
 2. Copy channel link in channel_id
@@ -54,8 +54,17 @@ add at the end of each line a  ;
    }
 
 ```
-##### Filter
-Currently PokeKaio supports 4 Types of filter. mon_iv, mon_whitelist, mon_iv_whitelist and mon_stats(for PvP-Mon) filter.
+#### Filter
+
+At the moement PokeKaio supports only Pokemon filter.
+
+* mon_whitelist: Whitelist check
+* mon_iv: Checks for an IV-Range
+* mon_iv_whitelist: Check for an IV-Range with a given Pokemon whitelist
+* mon_stats: checks for PVP-Mons values maxAtk, minDef, minSta and maxCP
+
+
+## Filter examples
 
 **Whitelist (mon_whitelist)**
 
