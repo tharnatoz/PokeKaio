@@ -8,6 +8,7 @@ import logging
 
 from channler import channler
 from utils import configParser as cp
+from reverseGeoCoder import reverseGeoCoder as rgcClass
 
 version = '1.3'
 
@@ -30,9 +31,11 @@ if __name__ == "__main__":
 
 
 	# check for reverse geo coding
+	rgc = None
 	reverseGeoCoding = bool(config.get('ReverseGeocoding', 'enable_reverse_geocoding'))
 	if (reverseGeoCoding):
 		googleMapsApiKey = config.get('ReverseGeocoding', 'google_maps_api_key')
+		rgc = rgcClass.ReverseGeoCoder(googleMapsApiKey)
 		if googleMapsApiKey == "":
 			logger.error('Please add a google maps api key to use reverse geocoding or disable this feature')
 			exit()
@@ -48,7 +51,7 @@ if __name__ == "__main__":
 	# create pkm channel
 	for channel in channelsConfig['pokemon']:
 		if (channel['isActive'] == "true"):
-			tmpChannler = channler.Channler(channel, checkInterval)
+			tmpChannler = channler.Channler(channel, checkInterval, rgc)
 			channelList.append(tmpChannler)
 			logger.info("Found channel config: %s", tmpChannler.channelName)
 
