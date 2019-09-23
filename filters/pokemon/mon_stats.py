@@ -9,7 +9,7 @@ class Mon_Stats(BaseFilter):
         super(Mon_Stats, self).__init__(filterConfig, 'mon_whitelist')
 
     def isSatisfied(self, pokemon):
-        if (pokemon.atkIv == ""):
+        if (pokemon.atkIv is None):
             return False
 
         f_monAtk = int(self.filterConfig['iVmaxAtk'])
