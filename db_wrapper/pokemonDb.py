@@ -1,4 +1,4 @@
-import connector
+from . import connector
 from utils import utils as u
 from utils import configParser as cp
 from model import pokemon as pkm
