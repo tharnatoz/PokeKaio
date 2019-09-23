@@ -26,8 +26,9 @@ visit [http://geo.jasparke.net/](http://geo.jasparke.net/)
 
 add at the end of each line a  ; 
 
+## Messange Support
 
-#### Telegram Support
+### Telegram Support
 
 1. Create a Telegram Channel
 2. Copy channel link in channel_id
@@ -54,7 +55,7 @@ add at the end of each line a  ;
    }
 
 ```
-#### Filter
+## Filter
 
 At the moement PokeKaio supports only Pokemon filter.
 
@@ -64,7 +65,7 @@ At the moement PokeKaio supports only Pokemon filter.
 * mon_stats: checks for PVP-Mons values maxAtk, minDef, minSta and maxCP
 
 
-## Filter examples
+### Filter examples
 
 **Whitelist (mon_whitelist)**
 
@@ -73,8 +74,8 @@ At the moement PokeKaio supports only Pokemon filter.
 ``` 
   "filter": {
     "type": "mon_iv",
-				"name": "PokeKaio_mon_whitelist_example",
-				"dataType": "pokemon",
+    "name": "PokeKaio_mon_whitelist_example",
+    "dataType": "pokemon",
     "whitelist": [147,201,214,317],
     "blacklist": [1,54,32],
    }
@@ -86,8 +87,8 @@ At the moement PokeKaio supports only Pokemon filter.
 ```  
   "filter": {
     "type": "mon_iv",
-				"name": "PokeKaio_mon_iv_example",
-				"dataType": "pokemon",
+    "name": "PokeKaio_mon_iv_example",
+    "dataType": "pokemon",
     "blacklist": [66,100],
     "ivMax": 45,
     "ivMin": 44
@@ -99,8 +100,8 @@ At the moement PokeKaio supports only Pokemon filter.
 ```  
   "filter": {
     "type": "mon_iv_whitelist",
-				"name": "PokeKaio_mon_iv_whitelist_example",
-				"dataType": "pokemon",
+    "name": "PokeKaio_mon_iv_whitelist_example",
+    "dataType": "pokemon",
     "whitelist": [201,1,149],
     "blacklist": [66,100],
     "ivMax": "45",
@@ -113,9 +114,9 @@ At the moement PokeKaio supports only Pokemon filter.
 * set  iVmaxAtk, iVminDef, iVminSta and maxCP if you want to, you can set blacklist filter.
 ```  
   "filter": {
-    ""type": "mon_stats",
-				"name": "PokeKaio_mon_stats_example",
-				"dataType": "pokemon",
+    "type": "mon_stats",
+    "name": "PokeKaio_mon_stats_example",
+    "dataType": "pokemon",
     "iVmaxAtk": "2",
     "iVminDef": "14",
     "iVminSta": "14",
