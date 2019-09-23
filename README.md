@@ -53,7 +53,6 @@ add at the end of each line a  ;
     "ivMax": "",
     "ivMin": ""
    }
-
 ```
 ## Filter
 
@@ -77,7 +76,7 @@ At the moement PokeKaio supports only Pokemon filter.
     "name": "PokeKaio_mon_whitelist_example",
     "dataType": "pokemon",
     "whitelist": [147,201,214,317],
-    "blacklist": [1,54,32],
+    "blacklist": [1,54,32]
    }
 ```   
   
@@ -104,8 +103,8 @@ At the moement PokeKaio supports only Pokemon filter.
     "dataType": "pokemon",
     "whitelist": [201,1,149],
     "blacklist": [66,100],
-    "ivMax": "45",
-    "ivMin": "44",
+    "ivMax": 45
+    "ivMin": 44
 
    }
 ```
@@ -117,10 +116,10 @@ At the moement PokeKaio supports only Pokemon filter.
     "type": "mon_stats",
     "name": "PokeKaio_mon_stats_example",
     "dataType": "pokemon",
-    "iVmaxAtk": "2",
-    "iVminDef": "14",
-    "iVminSta": "14",
-    "maxCP": "1500"
+    "iVmaxAtk": 2,
+    "iVminDef": 14,
+    "iVminSta": 14,
+    "maxCP": 1500
    }
 ```
 **Blacklist** The Blacklist is for every filter, each Pokemon Id in the list will be ignored, even if the ids are in the whitelist
