@@ -4,7 +4,6 @@ import logging
 
 from utils import utils
 from notification import telegram
-from filters import filter
 from filters import filterManager as fm
 from db_wrapper import pokemonDb as monDb
 from utils import sentManager as sm
@@ -21,7 +20,6 @@ class Channler(threading.Thread):
 		self.type = channelConfig['type']
 		self.channelId = channelConfig['channelId']
 		self.botToken = channelConfig['botToken']
-		# self.filter = filter.Filter(channelConfig['filter'])
 		self.includeArea = utils.parseGeofence(channelConfig['geofence'])
 		self.excludeArea = utils.parseGeofence(channelConfig['geofence_exclude'])
 		self.sentManager = sm.SentManager()
@@ -30,6 +28,7 @@ class Channler(threading.Thread):
 
 		self.rgc = reverseGeocoder
 		
+		# filter manager
 		self.filterManager = fm.FilterManager(channelConfig['filter'])
 		self.filter = self.filterManager.getFilter()
 
