@@ -13,7 +13,7 @@ class ReverseGeoCoder:
 
     requestBuffer = {}
 
-    def __init__(self, googleApiKey, cleanUpBufferTimeInternal=43200, maxBufferSize = 100):
+    def __init__(self, googleApiKey, cleanUpBufferTimeInternal=43200, maxBufferSize = 250):
 
         logging.basicConfig( format = '%(asctime)s  %(levelname)-10s %(threadName)s  %(name)s -- %(message)s',level=logging.INFO)
         self.logger = logging.getLogger(__name__)
@@ -28,7 +28,30 @@ class ReverseGeoCoder:
         # lets test the api key
         self.testApiKey()
 
-
+    '''
+    =======================================
+   
+    Functional Function
+   
+    =======================================
+    
+    '''
+    
+    def getAddress(self, lat, lon):
+        respObj = self.search(lat,lon)
+        if respObj is not "":
+		    return respObj['results'][0]['formatted_address']
+        else:
+            return ""    
+    
+    
+    '''
+    =======================================
+    
+    Api Test Function
+    
+    =======================================
+    '''
     def testApiKey(self):
         # lat/lon LA
         la_lat =  34.052235
@@ -44,6 +67,15 @@ class ReverseGeoCoder:
             self.logger.error("Reponse status: %s",resp['status'])
             self.logger.error("Reponse message: %s",resp['error_message'])
             exit()
+
+    '''
+    =======================================
+   
+    Request Functions
+   
+    =======================================
+    '''
+
 
     # Send request to google reverse gecoding api
     def askGoogle(self, lat, lon):
@@ -64,12 +96,18 @@ class ReverseGeoCoder:
 
     # function that checks the buffer and than google
     def search(self, lat, lon):
+
+        # first clean up action
+        self.cleanBufferWhenFull()
+
         hashKey = self._getHash(lat,lon)
         if(hashKey in self.requestBuffer):
-            print ("Request found in Buffer")
+            self.logger.info("Request found in Buffer")        
+            
             return self.requestBuffer[hashKey]['response']
         else:
-            print ("No Request found, so i ask google")
+            self.logger.info("No Request found, so i ask google")        
+
             resp = self.askGoogle(lat, lon)
             
             # add only valid requests
@@ -77,40 +115,80 @@ class ReverseGeoCoder:
                 self.addRequestToBuffer(lat, lon, resp)
                 return resp
             else: 
-                print (resp)
-                return False 
+                return "" 
 
     # helper funtion to generate hash
     def _getHash(self, lat, lon):
         return hash((lat, lon))
 
 
+    '''
+    =======================================
+   
+    Buffer Clean Functions
+   
+    =======================================
+    '''
+
+    # cleans the buffer everytime if its full
+    # deletes maxBufferSize/2 random elements
+    def cleanBufferWhenFull(self):        
+        if (len(self.requestBuffer) >= self.maxBufferSize):
+            self.logger.info("Delete %s random Request from Requestbuffer", self.maxBufferSize/2)        
+            deletedEntries = 0
+            for entry in self.requestBuffer.keys():
+                if(deletedEntries <= self.maxBufferSize):
+                    del self.requestBuffer[entry]
+                    deletedEntries = deletedEntries + 1
+
+            self.logger.info("CleanUp action is done. A total of %s Request was deleted...", str(deletedEntries))
+
+
     def _cleanBufferInternal(self):
         
-        print ("Delete all Request from Buffer older than: " + str(self.cleanUpBufferTimeInternal) + " seconds")
+        self.logger.info("Delete all Request from Buffer older than: %s seconds", str(self.cleanUpBufferTimeInternal))
         deletedEntries = 0
         for entry in self.requestBuffer.keys():
             if(self.requestBuffer[entry]['timestamp'] + self.cleanUpBufferTimeInternal  < time.time()):
                 del self.requestBuffer[entry]
                 deletedEntries = deletedEntries + 1
 
-        print ("CleanUp action is done. A total of " + str(deletedEntries) + " Request is deleted...")
+        self.logger.info("CleanUp action is done. A total of %s Request was deleted...", str(deletedEntries))        
 
     # clean the buffer with all response that are olderThan X
     # must be call manual
     def cleanBuffer(self, olderThan):
         
-        print ("Delete all Request from Buffer older than: " + str(olderThan) + " seconds")
+        self.logger.info("Delete all Request from Buffer older than: %s seconds",str(olderThan))        
         deletedEntries = 0
         for entry in self.requestBuffer.keys():
             if(self.requestBuffer[entry]['timestamp'] + olderThan  < time.time()):
                 del self.requestBuffer[entry]
                 deletedEntries = deletedEntries + 1
 
-        print ("CleanUp action is done. A total of " + str(deletedEntries) + " Request is deleted...")
+        self.logger.info("CleanUp action is done. A total of %s Request was deleted...", str(deletedEntries))
 
 
-"""
+    '''
+    =======================================
+   
+    config/getter/setter function
+   
+    =======================================
+    '''    
+
+    def getMaxBufferSize(self):
+        return self.maxBufferSize
+
+    def setMaxBufferSize(self, maxBufferSize):
+        self.maxBufferSize = maxBufferSize
+
+    def getBufferSize(self):
+        return len(self.bufferSize)
+
+
+
+'''
 def test():
     
     rgc =  ReverseGeoCoder("")
@@ -136,4 +214,4 @@ def test():
    
 
 test()
-"""
+'''

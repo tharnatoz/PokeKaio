@@ -31,14 +31,17 @@ if __name__ == "__main__":
 
 
 	# check for reverse geo coding
-	rgc = None
-	reverseGeoCoding = bool(config.get('ReverseGeocoding', 'enable_reverse_geocoding'))
-	if (reverseGeoCoding):
+	rgc = None 
+	reverseGeoCoding = config.get('ReverseGeocoding', 'enable_reverse_geocoding')
+	if (reverseGeoCoding == "true"):
+		logger.info('Reverse Geocoding is enabled.')
 		googleMapsApiKey = config.get('ReverseGeocoding', 'google_maps_api_key')
 		rgc = rgcClass.ReverseGeoCoder(googleMapsApiKey)
 		if googleMapsApiKey == "":
 			logger.error('Please add a google maps api key to use reverse geocoding or disable this feature')
 			exit()
+	else:
+		logger.info('Reverse Geocoding is disabled.')
 
 	
 
