@@ -1,9 +1,9 @@
 # PokeKaio
-### Welcome to PokeKaio - your Kaioshin that supports you to get the very best
+### Welcome to PokeKaio - your Kaioshin that supports you to become the very best
 
 ### What is PokeKaio
-PokeKaio is a RocketMap extension that checks the database for Pokemon and sends you a message to a telegram channel.
-You will need a scanner that collects the Pokemon data and write it into your RocketMap database, PokeKaio then checks this data and sends you a message if a desired one is found.
+PokeKaio is a RDM-Map extension that checks the database for Pokemon and sends you a message to a telegram channel.
+You will need a scanner that collects the Pokemon data and write it into your RocketMap database, PokeKaio than checks this data and sends you a message if a desired one is found.
 
 
 ### Requirements
@@ -46,7 +46,7 @@ add at the end of each line a  ;
    "geofence": "",
    "geofence_exclude": "",
    "filter": {
-    "type": "iv",
+    "type": "mon_iv",
     "whitelist": [],
     "blacklist": [],
     "ivMax": "",
@@ -55,68 +55,58 @@ add at the end of each line a  ;
 
 ```
 ##### Filter
-Currently PokeKaio supports 4 Types of filter. IV, Whitlist, Whitelist_IV and stats(for PvP-Mon) filter.
+Currently PokeKaio supports 4 Types of filter. mon_iv, mon_whitelist, mon_iv_whitelist and mon_stats(for PvP-Mon) filter.
 
-**Whitelist**
+**Whitelist (mon_whitelist)**
 
 * add your Pokemon Id to the whitlist: [1,2,147,201]
 
 ``` 
   "filter": {
-    "type": "whitelist",
+    "type": "mon_iv",
+				"name": "PokeKaio_mon_whitelist_example",
+				"dataType": "pokemon",
     "whitelist": [147,201,214,317],
-    "blacklist": [66,100],
-    "ivMax": "",
-    "ivMin": "",
-    "iVmaxAtk": "",
-    "iVminDef": "",
-    "iVminSta": "",
-    "maxCP": ""
+    "blacklist": [1,54,32],
    }
 ```   
   
 
-**IV** 
+**IV (mon_iv)** 
 * set min and max IV if you only want a specific IV then set for e.g. ```"minIv": "45"``` and ```"maxIv": "45"``` for a 100IV Channel
 ```  
   "filter": {
-    "type": "iv",
-    "whitelist": [],
+    "type": "mon_iv",
+				"name": "PokeKaio_mon_iv_example",
+				"dataType": "pokemon",
     "blacklist": [66,100],
-    "ivMax": "45",
-    "ivMin": "44",
-    "iVmaxAtk": "",
-    "iVminDef": "",
-    "iVminSta": "",
-    "maxCP": ""
+    "ivMax": 45,
+    "ivMin": 44
    }
 ```
 
-**Whitelist IV** 
+**IV-Whitelist (mon_iv_whitelist)** 
 * set min and max IV if you only want a specific IV then set for e.g. ```"minIv": "45"``` and ```"maxIv": "45"``` and the Pokemon Id's that shoult report.
 ```  
   "filter": {
-    "type": "whitelist_iv",
+    "type": "mon_iv_whitelist",
+				"name": "PokeKaio_mon_iv_whitelist_example",
+				"dataType": "pokemon",
     "whitelist": [201,1,149],
     "blacklist": [66,100],
     "ivMax": "45",
     "ivMin": "44",
-    "iVmaxAtk": "",
-    "iVminDef": "",
-    "iVminSta": "",
-    "maxCP": ""
+
    }
 ```
 
-**Stats** 
+**Stats (mon_stats)** 
 * set  iVmaxAtk, iVminDef, iVminSta and maxCP if you want to, you can set blacklist filter.
 ```  
   "filter": {
-    "type": "stats",
-    "whitelist": [],
-    "blacklist": [],
-    "ivMax": "",
-    "ivMin": "",
+    ""type": "mon_stats",
+				"name": "PokeKaio_mon_stats_example",
+				"dataType": "pokemon",
     "iVmaxAtk": "2",
     "iVminDef": "14",
     "iVminSta": "14",
