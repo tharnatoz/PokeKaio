@@ -12,9 +12,13 @@
 			"filter": {
 				"type": "iv",
 				"whitelist": [],
-				"blacklist": [19],
+				"blacklist": [],
 				"ivMax": "45",
-				"ivMin": "45"
+				"ivMin": "45",
+				"iVmaxAtk": "",
+				"iVminDef": "",
+				"iVminSta": "",
+				"maxCP": ""
 			}
 		},
 		{
@@ -31,7 +35,11 @@
 				"whitelist": [19,90,92, 147, 198, 201],
 				"blacklist": [],
 				"ivMax": "",
-				"ivMin": ""
+				"ivMin": "",
+				"iVmaxAtk": "2",
+				"iVminDef": "14",
+				"iVminSta": "14",
+				"maxCP": "1500"
 			}
 		}
 	]
