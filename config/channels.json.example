@@ -10,7 +10,9 @@
 			"geofence": "PATH/TO/YOUR/GEOFENCE",
 			"geofence_exclude": "",
 			"filter": {
-				"type": "iv",
+				"type": "mon_iv",
+				"name": "",
+				"dataType": "pokemon",
 				"whitelist": [],
 				"blacklist": [],
 				"ivMax": "45",
@@ -31,7 +33,9 @@
 			"geofence": "PATH/TO/YOUR/GEOFENCE",
 			"geofence_exclude": "",
 			"filter": {
-				"type": "whitelist",
+				"type": "mon_whitelist",
+				"name": "",
+				"dataType": "pokemon",
 				"whitelist": [19,90,92, 147, 198, 201],
 				"blacklist": [],
 				"ivMax": "",

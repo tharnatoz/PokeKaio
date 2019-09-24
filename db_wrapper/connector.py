@@ -9,14 +9,13 @@ from utils import configParser as cp
 
 class DatabaseConnector:
 
-	def __init__(self):
+	def __init__(self, config):
 		# get database config
-		config = cp.readConfig()
-		self.user = config.get('database', 'db_user')
-		self.password = config.get('database', 'db_pass')
-		self.host = config.get('database', 'db_host')
-		self.database = config.get('database', 'db_name')
-		self.port = config.get('database', 'db_port')
+		self.user = 	config['db_user']
+		self.password = config['db_pass']
+		self.host = 	config['db_host']
+		self.database = config['db_name']
+		self.port = 	config['db_port']
 
 	def connect(self):
 
