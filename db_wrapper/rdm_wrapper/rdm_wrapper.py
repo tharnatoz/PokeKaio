@@ -14,8 +14,8 @@ class RdmWrapper(BaseWrapper):
 
     def __init__(self, config):
 
-		# set last db request time
-        self.lastDatabaseRequestTime = time.time()
+		# set last db request time (and substrac 30seconds so with the first request data can be found)
+        self.lastDatabaseRequestTime = time.time() - 30
 
         super(RdmWrapper, self).__init__(config)
 
