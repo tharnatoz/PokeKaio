@@ -11,11 +11,11 @@ class DatabaseConnector:
 
 	def __init__(self, config):
 		# get database config
-		self.user = 	config['user']
-		self.password = config['password']
-		self.host = 	config['host']
-		self.database = config['name']
-		self.port = 	config['port']
+		self.user = 	config['db_user']
+		self.password = config['db_pass']
+		self.host = 	config['db_host']
+		self.database = config['db_name']
+		self.port = 	config['db_port']
 
 	def connect(self):
 

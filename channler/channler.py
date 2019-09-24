@@ -23,7 +23,7 @@ class Channler(threading.Thread):
 		self.includeArea = utils.parseGeofence(channelConfig['geofence'])
 		self.excludeArea = utils.parseGeofence(channelConfig['geofence_exclude'])
 		self.sentManager = sm.SentManager()
-		self.checkInterval = options['checkInterval']
+		self.checkInterval = int(options['channler']['checkinterval'])
 
 		self.rgc = reverseGeocoder
 		

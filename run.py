@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 import json
 import time
 import signal
 import logging
-
 
 from channler import channler
 from utils import configParser as cp
@@ -14,12 +14,11 @@ version = '1.3'
 
 if __name__ == "__main__":
 
-	options = {}
-	options['database'] = {}
-
+	# get logger
 	logging.basicConfig( format = '%(asctime)s  %(levelname)-10s %(threadName)s  %(name)s -- %(message)s',level=logging.INFO)
 	logger = logging.getLogger(__name__)
 
+	# welcome message
 	logger.info("#############################")
 	logger.info("PokeKaio - v. %s",  version)
 	logger.info("#############################")
@@ -27,31 +26,18 @@ if __name__ == "__main__":
 	
 	# read config
 	config = cp.readConfig()
-	
-	# get checkInterval
-	checkInterval = int(config.get('channler', 'checkInterval'))
-	logger.info("Databse Checkinterval is set to %s", checkInterval)
-	options['checkInterval'] = checkInterval
+	options = cp.configToDict(config)
 
-	# get database schema
-	databaseSchema = config.get('database', 'db_schema')
-	logger.info("Using Databaseshema: %s" , databaseSchema)
-	options['database']['schema'] = databaseSchema
-
-	# get database config 
-	options['database']['host'] = config.get('database', 'db_host')
-	options['database']['name'] = config.get('database', 'db_name')
-	options['database']['user'] = config.get('database', 'db_user')
-	options['database']['password'] = config.get('database', 'db_pass')
-	options['database']['port'] = config.get('database', 'db_port')
+	# display enabled options
+	logger.info("Databse Checkinterval is set to %s", options['channler']['checkinterval'])
+	logger.info("Using Databaseshema: %s" , options['database']['db_schema'])
 
 
-	# check for reverse geo coding
+	# check for reverse geocoding
 	rgc = None 
-	reverseGeoCoding = config.get('ReverseGeocoding', 'enable_reverse_geocoding')
-	if (reverseGeoCoding == "true"):
+	if ( options['ReverseGeocoding']['enable_reverse_geocoding'] == "true"):
 		logger.info('Reverse Geocoding is enabled.')
-		googleMapsApiKey = config.get('ReverseGeocoding', 'google_maps_api_key')
+		googleMapsApiKey = options['ReverseGeocoding']['google_maps_api_key']
 		rgc = rgcClass.ReverseGeoCoder(googleMapsApiKey)
 		if googleMapsApiKey == "":
 			logger.error('Please add a google maps api key to use reverse geocoding or disable this feature')
@@ -59,7 +45,6 @@ if __name__ == "__main__":
 	else:
 		logger.info('Reverse Geocoding is disabled.')
 
-	
 
 	# load channels
 	channelList = []
@@ -84,9 +69,9 @@ if __name__ == "__main__":
 		channel.setDaemon(True)
 		channel.start()
 	
-		# run forever
+	# run forever
 	while(True):
 		time.sleep(0.5)
 
  
-	print('Exiting main program')	
+	print('Exit  main program')	

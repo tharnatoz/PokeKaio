@@ -7,7 +7,7 @@ class DbManager:
 
     def __init__(self, config):
         
-        self.schema = config['schema']
+        self.schema = config['db_schema']
         self.config = config
         self.databseConnector = None
 
