@@ -10,7 +10,7 @@ from channler import channler
 from utils import configParser as cp
 from reverseGeoCoder import reverseGeoCoder as rgcClass
 
-version = '1.3'
+version = '1.3.1'
 
 if __name__ == "__main__":
 
