@@ -14,6 +14,9 @@ version = '1.3'
 
 if __name__ == "__main__":
 
+	options = {}
+	options['database'] = {}
+
 	logging.basicConfig( format = '%(asctime)s  %(levelname)-10s %(threadName)s  %(name)s -- %(message)s',level=logging.INFO)
 	logger = logging.getLogger(__name__)
 
@@ -22,12 +25,25 @@ if __name__ == "__main__":
 	logger.info("#############################")
 	logger.info("Load config...")
 	
-	# loadconfig
+	# read config
 	config = cp.readConfig()
+	
+	# get checkInterval
 	checkInterval = int(config.get('channler', 'checkInterval'))
 	logger.info("Databse Checkinterval is set to %s", checkInterval)
+	options['checkInterval'] = checkInterval
 
-	logger.info("Using Databaseshema: %s" , config.get('database', 'db_schema'))
+	# get database schema
+	databaseSchema = config.get('database', 'db_schema')
+	logger.info("Using Databaseshema: %s" , databaseSchema)
+	options['database']['schema'] = databaseSchema
+
+	# get database config 
+	options['database']['host'] = config.get('database', 'db_host')
+	options['database']['name'] = config.get('database', 'db_name')
+	options['database']['user'] = config.get('database', 'db_user')
+	options['database']['password'] = config.get('database', 'db_pass')
+	options['database']['port'] = config.get('database', 'db_port')
 
 
 	# check for reverse geo coding
@@ -54,7 +70,7 @@ if __name__ == "__main__":
 	# create pkm channel
 	for channel in channelsConfig['pokemon']:
 		if (channel['isActive'] == "true"):
-			tmpChannler = channler.Channler(channel, checkInterval, rgc)
+			tmpChannler = channler.Channler(channel, options, rgc)
 			channelList.append(tmpChannler)
 			logger.info("Found channel config: %s", tmpChannler.channelName)
 

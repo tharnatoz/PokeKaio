@@ -2,18 +2,18 @@ import time
 import threading
 import logging
 
+from filters import filterManager as fm
+from db_wrapper import dbManager as dbm
+
 from utils import utils
 from notification import telegram
-from filters import filterManager as fm
-from db_wrapper import pokemonDb as monDb
 from utils import sentManager as sm
 
 class Channler(threading.Thread):
 
 
-	def __init__(self, channelConfig, checkInterval, reverseGeocoder):
+	def __init__(self, channelConfig, options, reverseGeocoder):
 		threading.Thread.__init__(self)
-
 
 		self.channelName = channelConfig['name']
 		self.messenger = channelConfig['messenger']
@@ -23,11 +23,15 @@ class Channler(threading.Thread):
 		self.includeArea = utils.parseGeofence(channelConfig['geofence'])
 		self.excludeArea = utils.parseGeofence(channelConfig['geofence_exclude'])
 		self.sentManager = sm.SentManager()
-		self.pokemonDbWrapper = monDb.PokemonDb()
-		self.checkInterval = checkInterval
+		self.checkInterval = options['checkInterval']
 
 		self.rgc = reverseGeocoder
 		
+		# database manager
+		self.databaseManager = dbm.DbManager(options['database'])
+		self.db = self.databaseManager.getDbBridge()
+
+
 		# filter manager
 		self.filterManager = fm.FilterManager(channelConfig['filter'])
 		self.filter = self.filterManager.getFilter()
@@ -53,7 +57,8 @@ class Channler(threading.Thread):
 
 	def check(self):
 		if(self.type == 'pokemon'):
-			data = self.pokemonDbWrapper.getPokemon()
+			
+			data = self.db.getPokemonData()
 			self.logger.info("%s found %s new Pokemon", self.channelName, str(len(data)))
 
 			for pokemon in data:
