@@ -26,7 +26,7 @@ class BaseFilter:
         else:
             raise ValueError("Missing Field: 'name' in Filter. Please check your channels.json. Error raised in Filter with type:", self.filterType )
         
-         # get logger instance
+        # get logger instance
         logging.basicConfig( format = '%(asctime)s  %(levelname)-10s %(threadName)s  %(name)s -- %(message)s',level=logging.INFO)
         self.logger = logging.getLogger(__name__)
 
