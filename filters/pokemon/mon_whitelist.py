@@ -10,7 +10,7 @@ class Mon_Whitelist(BaseFilter):
         super(Mon_Whitelist, self).__init__(filterConfig, 'mon_whitelist')
 
     def isSatisfied(self, pokemon):
-		  return pokemon.pokemonId in self.filterConfig['whitelist'] and pokemon.pokemonId not in self.filterConfig['blacklist']
+        return pokemon.pokemonId in self.filterConfig['whitelist'] and pokemon.pokemonId not in self.filterConfig['blacklist']
         
     
     def testConfig(self):
