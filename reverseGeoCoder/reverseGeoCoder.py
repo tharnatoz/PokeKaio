@@ -184,7 +184,7 @@ class ReverseGeoCoder:
         self.maxBufferSize = maxBufferSize
 
     def getBufferSize(self):
-        return len(self.bufferSize)
+        return len(self.requestBuffer)
 
 
 

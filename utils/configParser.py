@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # coding: utf8
 
-from ConfigParser import SafeConfigParser
+import configparser
 
 def readConfig():
-	parser = SafeConfigParser()
+	parser = configparser.ConfigParser()
 	parser.read('config/config.ini')
 
 	return parser
