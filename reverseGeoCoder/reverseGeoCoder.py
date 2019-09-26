@@ -40,7 +40,7 @@ class ReverseGeoCoder:
     def getAddress(self, lat, lon):
         respObj = self.search(lat,lon)
         if respObj is not "":
-		    return respObj['results'][0]['formatted_address']
+            return respObj['results'][0]['formatted_address']
         else:
             return ""    
     
@@ -61,7 +61,7 @@ class ReverseGeoCoder:
 
         resp = self.askGoogle(la_lat, la_lon)
         if (resp['status'] == 'OK'):
-			self.logger.info("google api key is fine")
+            self.logger.info("google maps api key is fine")
         else:
             self.logger.error("Something went wrong with yout google api key.")
             self.logger.error("Reponse status: %s",resp['status'])

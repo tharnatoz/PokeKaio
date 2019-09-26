@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from requests import get
-import message
+from . import message
 import json
 import logging
 
