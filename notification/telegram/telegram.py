@@ -32,7 +32,10 @@ class Telegram(BaseMessenger):
 		# get Sticker
 		if(str(pokemon.pokemonId) in self.stickers_mon['sticker_pkl']):
 			self._sendSticker(self.stickers_mon['sticker_pkl'][str(pokemon.pokemonId)])
-		msg = "yo"#message.getMessage(pokemon, address)
+		
+		# get message
+		msg = self.message.getPokemonInfo(pokemon.pokemonId, pokemon.gender)
+		
 		self._sendMessage(msg)
 		self._sendLocation(pokemon.lat, pokemon.lon)
 

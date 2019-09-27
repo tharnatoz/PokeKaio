@@ -3,8 +3,9 @@
 
 from abc import ABCMeta, abstractmethod, abstractproperty
 import logging
-
 from requests import get
+
+from message import messageParser
 
 # https://stackoverflow.com/questions/13646245/is-it-possible-to-make-abstract-classes-in-python
 
@@ -20,6 +21,10 @@ class BaseMessenger:
         # set config
         self.config = config
 
+        # get message parser
+        self.message = messageParser.MessageParser('de')
+
+        # request module
         self.getRequest = get
 
         super(BaseMessenger, self).__init__()

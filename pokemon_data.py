@@ -819,7 +819,6 @@ weather =  {
     "006": "Schnee",
     "007": "Nebel"
   }
-
 weather_emojis = {
     "0": "",
     "1": '&#9728;',
