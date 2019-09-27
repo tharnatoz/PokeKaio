@@ -41,11 +41,14 @@ def isNotInGeofence(geofence, lat, lon):
 		return not geofence.contains(Point(lat, lon))
 
 def getGender(gender):
-	if gender== 1:
-		return "♂"
+	if gender == 1:
+		return u'\u2642'  # male symbol
 	elif gender == 2:
-		return "♀"
-	return ""
+		return u'\u2640'  # female symbol
+	elif gender == 3:
+		return u'\u26b2'  # neutral
+	return ''  
+
 
 def getWeather(weather_cond):
 	if weather_cond is None:

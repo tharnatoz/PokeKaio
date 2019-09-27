@@ -13,5 +13,7 @@ class MessageParser():
             self.messages = json.load(f)
         
 
-    def getPokemonInfo(self, monName, monGender):
-        return u''+self.messages['pokemon_info'].format(monName, 1)
+    def getPokemonInfo(self, mKind, monName, monGender):
+        string =  self.messages[mKind]['pokemon_info']
+        #s = string.encode('utf-8')
+        return  string.format(mon_name = monName, mon_gender=monGender, ts="ds")
