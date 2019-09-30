@@ -21,6 +21,9 @@ class Telegram(BaseMessenger):
 		self.sendMessageURL = "https://api.telegram.org/bot"+self.botToken+"/sendMessage"
 		self.sendLocationURL = "https://api.telegram.org/bot"+self.botToken+"/sendLocation"
 		
+		self.googleMapsUrl = "https://maps.google.com/?"
+
+
 		# load stickers
 		with open('notification/telegram/telegramStickers_mon.json') as f:
 			self.stickers_mon = json.load(f)
@@ -33,10 +36,29 @@ class Telegram(BaseMessenger):
 		if(str(pokemon.pokemonId) in self.stickers_mon['sticker_pkl']):
 			self._sendSticker(self.stickers_mon['sticker_pkl'][str(pokemon.pokemonId)])
 		
-		# get message
-		msg = self.message.getPokemonInfo('telegram', pokemon.pokemonId, pokemon.gender)
+		# get message from message.json
+		if(pokemon.atkIv is not None):
+			msg = self.message.messages['telegram']['pokemon_info_detail']
+		else:
+			msg = self.message.messages['telegram']['pokemon_info']
 		
-		self._sendMessage(msg)
+		# format message
+		formattedMessage = self.message.replace(msg, pokemon.__dict__)
+		
+		# get spawntime valid/not valid message and append it on the message
+		if(pokemon.expireTimestampVerified):
+			formattedMessage = formattedMessage + self.message.messages['telegram']['spawntime_valid'].encode('UTF-8')
+		else:
+			formattedMessage = formattedMessage + self.message.messages['telegram']['spawntime_not_valid'].encode('UTF-8')
+		
+		# build the google maps address link 
+		if(address is not ""):
+			formattedMessage = formattedMessage + self._buildGoogleMapsAddressLink(address, pokemon.lat, pokemon.lon)
+		
+		# finally send message
+		self._sendMessage(formattedMessage)
+		
+		# and send location
 		self._sendLocation(pokemon.lat, pokemon.lon)
 
 	
@@ -45,9 +67,28 @@ class Telegram(BaseMessenger):
 
 	def sendQuestNotification(self):
 		pass 
+	'''
+	=====================================
+	| Message Builder helper functions
+	=====================================
+	|
+	| Helper function to build the telegram messages 
+	| 
+	|
+	'''
+	def _buildGoogleMapsAddressLink(self, address, lat, lon):
+		address = address.encode("UTF-8")
+		link = self._buildGoogleMapsLink(lat, lon)
+		return"\n\n<a href='{link}'>{address}</a>".format(link=link, address=address)
 
+	def _buildGoogleMapsLink(self, lat, lon):
+		params = "daddr={lat},{lon}".format(
+            lat=lat,
+            lon=lon
+        )
+		return "{url_base}{params}".format(url_base=self.googleMapsUrl, params=params)
 
-
+	
 	'''
 	=====================================
 	| Telegram Api Functions

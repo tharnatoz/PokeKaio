@@ -42,11 +42,14 @@ def isNotInGeofence(geofence, lat, lon):
 
 def getGender(gender):
 	if gender == 1:
-		return u'\u2642'  # male symbol
+		return "♂"
+		#return u'\u2642'  # male symbol
 	elif gender == 2:
-		return u'\u2640'  # female symbol
+		return "♀"
+		#return u'\u2640'  # female symbol
 	elif gender == 3:
-		return u'\u26b2'  # neutral
+		return "⚲"
+		#return u'\u26b2'  # neutral
 	return ''  
 
 
@@ -60,12 +63,6 @@ def getForm(pokemon_id, form):
 		return "Form: " + alphabet[form] + "\n"
 	else:
 		return ""
-
-def getFullStats (iv_a, iv_d, iv_s):
-	if iv_a is None:
-		return -1
-	else:
-		return iv_a + iv_d + iv_s
 
 def calcIV (iv_a, iv_d, iv_s):
 	if iv_a is None:

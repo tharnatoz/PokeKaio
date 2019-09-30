@@ -1,15 +1,11 @@
 {
     "telegram": {
-        "pokemon_info" : "Ein wildes {mon_name} {mon_gender}",
+        "pokemon_info_detail" : "<b>Ein wildes {pokemonId} {gender} {weather}</b>\n{cp}WP - {iv}%IV - LVL {level}\n(A{atkIv}/D{defIv}/S{staIv})\nNoch {duration} bis {disappear_time}Uhr\n",
 
-        "pokemon_iv_info": "{0}WP - {1}%IV - LVL {2}",
+        "pokemon_info" : "<b>Ein wildes {pokemonId} {gender}</b>\nNoch {duration} bis {disappear_time}Uhr\n",
 
-        "pokemon_stats": "(A{0}/D{1}/S{2})",
-
-        "pokemon_time": "{Noch {0} bis {1}Uhr",
-
-        "spawntime_valid": "Die Zeit is richtig! Let's Go!",
+        "spawntime_valid": "<b>Die Zeit ist richtig! Lets Go!</b>",
         
-        "spawntime_not_valid": "Risky! Die Zeit ist eine Schätzung"
+        "spawntime_not_valid": "<b>Risky. Die Zeit ist eine Schätzung.</b>"
     }
 }

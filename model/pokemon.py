@@ -13,9 +13,9 @@ class Pokemon(object):
 		self.defIv = None
 		self.staIv = None
 		self.form = None
-		self.pokemonId = None
+		self.gender = None
 		self.weather = None
-		self.lvl = None
+		self.level = None
 		self.cp = None
 		self.disappear_timestamp = None
 		self.disappear_time = None
