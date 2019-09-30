@@ -10,7 +10,6 @@ class Telegram(BaseMessenger):
 
 	def __init__(self, channelName, config):
 		
-
 		# config
 		self.channelName = channelName
 		self.botToken = config['botToken']
@@ -38,18 +37,18 @@ class Telegram(BaseMessenger):
 		
 		# get message from message.json
 		if(pokemon.atkIv is not None):
-			msg = self.message.messages['telegram']['pokemon_info_detail']
+			msg = self.message.getMessage('pokemon_info_detail')
 		else:
-			msg = self.message.messages['telegram']['pokemon_info']
+			msg = self.message.getMessage('pokemon_info')
 		
 		# format message
 		formattedMessage = self.message.replace(msg, pokemon.__dict__)
 		
 		# get spawntime valid/not valid message and append it on the message
 		if(pokemon.expireTimestampVerified):
-			formattedMessage = formattedMessage + self.message.messages['telegram']['spawntime_valid'].encode('UTF-8')
+			formattedMessage = formattedMessage + self.message.getMessage('spawntime_valid')
 		else:
-			formattedMessage = formattedMessage + self.message.messages['telegram']['spawntime_not_valid'].encode('UTF-8')
+			formattedMessage = formattedMessage + self.message.getMessage('spawntime_not_valid')
 		
 		# build the google maps address link 
 		if(address is not ""):

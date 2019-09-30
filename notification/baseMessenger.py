@@ -20,9 +20,10 @@ class BaseMessenger:
 
         # set config
         self.config = config
+        self.messenger = config['type']
 
         # get message parser
-        self.message = messageParser.MessageParser('de')
+        self.message = messageParser.MessageParser('de', self.messenger)
 
         # request module
         self.getRequest = get
