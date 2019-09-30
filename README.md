@@ -19,6 +19,9 @@ You will need a scanner that collects the Pokemon data and write it into your Ro
 - ```cp config/channels.json.example config/channels.ini```
 - add your config in config.ini and channels.json (example configs are in .example files)
 
+### Language Settings
+
+in config.ini under ```settings``` set yout locale e.g. ```locale = de ```
 
 ### Geofence
 visit [http://geo.jasparke.net/](http://geo.jasparke.net/)
@@ -54,7 +57,7 @@ At the moment PokeKaio only supports Telegram notifications
     "type":"telegram",
     "channelId": "<your_channel_id_goes_here>",
     "botToken": "<your_bot_toke_goes_here>"
-   }
+   },
    "filter": {
     "type": "mon_iv",
     "whitelist": [],
