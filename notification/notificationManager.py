@@ -10,7 +10,7 @@ class NotificationManager:
         self.config = config
         self.messengerType = config['messenger']['type']
         
-        # add here you new schema connection 
+        # add here you new messenger connection 
         if(self.messengerType == 'telegram'):
             self.notificationCnx = telegram.Telegram(config['name'],config['messenger'], locale)
             pass

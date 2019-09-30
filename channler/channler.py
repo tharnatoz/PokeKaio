@@ -72,6 +72,6 @@ class Channler(threading.Thread):
 								address = ""
 								if self.rgc is not None:
 									address = self.rgc.getAddress(pokemon.lat, pokemon.lon)
-								self.logger.info("Pokemon with encounter %s id will be sent to: %s",pokemon.encounterId, self.channelName)
+								self.logger.info("Pokemon with encounter %s id will be send to: %s",pokemon.encounterId, self.channelName)
 								self.messenger.sendPokemonNotification(pokemon, address)
 								self.sentManager.addEncounterToAlreadySent(pokemon.encounterId, pokemon.disappear_timestamp)
