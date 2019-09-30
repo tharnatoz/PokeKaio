@@ -12,7 +12,7 @@ from message import messageParser
 class BaseMessenger:
     __metaclass__ = ABCMeta
 
-    def __init__(self, config):
+    def __init__(self, config, locale):
 
         # get logger instance
         logging.basicConfig( format = '%(asctime)s  %(levelname)-10s %(threadName)s  %(name)s -- %(message)s',level=logging.INFO)
@@ -21,9 +21,10 @@ class BaseMessenger:
         # set config
         self.config = config
         self.messenger = config['type']
-
+        self.locale = locale
+        
         # get message parser
-        self.message = messageParser.MessageParser('de', self.messenger)
+        self.message = messageParser.MessageParser(locale, self.messenger)
 
         # request module
         self.getRequest = get

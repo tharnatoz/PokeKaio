@@ -27,7 +27,7 @@ if __name__ == "__main__":
 	# read config
 	config = cp.readConfig()
 	options = cp.configToDict(config)
-
+	
 	# display enabled options
 	logger.info("Databse Checkinterval is set to %s", options['channler']['checkinterval'])
 	logger.info("Using Databaseshema: %s" , options['database']['db_schema'])

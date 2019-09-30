@@ -23,6 +23,7 @@ class Channler(threading.Thread):
 		self.includeArea = utils.parseGeofence(channelConfig['geofence'])
 		self.excludeArea = utils.parseGeofence(channelConfig['geofence_exclude'])
 		self.sentManager = sm.SentManager()
+		self.locale = options['settings']['locale']
 		
 		self.checkInterval = int(options['channler']['checkinterval'])
 
@@ -39,7 +40,7 @@ class Channler(threading.Thread):
 		self.filter = self.filterManager.getFilter()
 
 		# notification manager
-		self.notificationManager = nm.NotificationManager(channelConfig)
+		self.notificationManager = nm.NotificationManager(channelConfig, self.locale)
 		self.messenger = self.notificationManager.getMessenger()
 
 		# get logger

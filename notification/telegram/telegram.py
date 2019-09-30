@@ -8,7 +8,7 @@ import json
 
 class Telegram(BaseMessenger):
 
-	def __init__(self, channelName, config):
+	def __init__(self, channelName, config, locale=None):
 		
 		# config
 		self.channelName = channelName
@@ -20,14 +20,14 @@ class Telegram(BaseMessenger):
 		self.sendMessageURL = "https://api.telegram.org/bot"+self.botToken+"/sendMessage"
 		self.sendLocationURL = "https://api.telegram.org/bot"+self.botToken+"/sendLocation"
 		
+		# google maps base url
 		self.googleMapsUrl = "https://maps.google.com/?"
-
 
 		# load stickers
 		with open('notification/telegram/telegramStickers_mon.json') as f:
 			self.stickers_mon = json.load(f)
 		
-		super(Telegram, self).__init__(config)
+		super(Telegram, self).__init__(config, locale)
 
 
 	def sendPokemonNotification(self, pokemon, address=""):
