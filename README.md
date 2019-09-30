@@ -58,7 +58,7 @@ At the moment PokeKaio only supports Telegram notifications
    "messenger": {
     "type":"telegram",
     "channelId": "<your_channel_id_goes_here>",
-    "botToken": "<your_bot_toke_goes_here>"
+    "botToken": "<your_bot_token_goes_here>"
    },
    "filter": {
     "type": "mon_iv",
