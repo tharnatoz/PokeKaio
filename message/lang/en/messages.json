@@ -1,8 +1,8 @@
 {
     "telegram": {
-        "pokemon_info_detail" : "<b>A wild {pokemonName}{gender} {weather}</b>\n{cp}WP - {iv}%IV - LVL {level}\n(A{atkIv}/D{defIv}/S{staIv})\nYet {duration} until {disappear_time}\n",
+        "pokemon_info_detail" : "<b>A wild {pokemonName}{gender} {weather}</b>\n{cp}WP - {iv}%IV - LVL {level}\n(A{atkIv}/D{defIv}/S{staIv})\nYet {duration} until {disappear_time}\n{form}",
 
-        "pokemon_info" : "<b>A wild {pokemonName}{gender}</b>\nYet {duration} until {disappear_time}Uhr\n",
+        "pokemon_info" : "<b>A wild {pokemonName}{gender}</b>\nYet {duration} until {disappear_time}Uhr\n{form}",
 
         "spawntime_valid": "<b>The time is right! Lets Go!</b>",
         
