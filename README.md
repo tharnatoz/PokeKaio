@@ -22,6 +22,7 @@ You will need a scanner that collects the Pokemon data and write it into your Ro
 ### Language Settings
 
 in config.ini under ```settings``` set yout locale e.g. ```locale = de ```
+current support ```en``` and ```de```
 
 ### Geofence
 visit [http://geo.jasparke.net/](http://geo.jasparke.net/)
