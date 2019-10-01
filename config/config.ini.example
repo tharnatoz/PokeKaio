@@ -14,3 +14,6 @@ checkInterval = 30
 [ReverseGeocoding]
 enable_reverse_geocoding = false
 #google_maps_api_key = 
+
+[settings]
+locale = de
