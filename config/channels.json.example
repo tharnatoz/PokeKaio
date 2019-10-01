@@ -4,11 +4,13 @@
 			"name": "Iv100",
 			"type": "pokemon",
 			"isActive": "true",
-			"messenger": "telegram",
-			"channelId": "YOUR_CHANNEL_ID",
-			"botToken": "YOUR_BOT_TOKEN",
 			"geofence": "PATH/TO/YOUR/GEOFENCE",
 			"geofence_exclude": "",
+			"messenger": {
+				"type": "messenger type",
+				"channelId": "YOUR_CHANNEL_ID",
+				"botToken": "YOUR_BOT_TOKEN"
+			},
 			"filter": {
 				"type": "mon_iv",
 				"name": "",
@@ -27,11 +29,13 @@
 			"name": "WhiteList",
 			"type": "pokemon",
 			"isActive": "true",
-			"messenger": "telegram",
-			"channelId": "YOUR_CHANNEL_ID",
-			"botToken": "YOUR_BOT_TOKEN",
 			"geofence": "PATH/TO/YOUR/GEOFENCE",
 			"geofence_exclude": "",
+			"messenger": {
+				"type": "messenger type",
+				"channelId": "YOUR_CHANNEL_ID",
+				"botToken": "YOUR_BOT_TOKEN"
+			},
 			"filter": {
 				"type": "mon_whitelist",
 				"name": "",

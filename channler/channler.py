@@ -1,12 +1,15 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import time
 import threading
 import logging
 
 from filters import filterManager as fm
 from db_wrapper import dbManager as dbm
+from notification import notificationManager as nm
 
 from utils import utils
-from notification import telegram
 from utils import sentManager as sm
 
 class Channler(threading.Thread):
@@ -16,15 +19,15 @@ class Channler(threading.Thread):
 		threading.Thread.__init__(self)
 
 		self.channelName = channelConfig['name']
-		self.messenger = channelConfig['messenger']
 		self.type = channelConfig['type']
-		self.channelId = channelConfig['channelId']
-		self.botToken = channelConfig['botToken']
 		self.includeArea = utils.parseGeofence(channelConfig['geofence'])
 		self.excludeArea = utils.parseGeofence(channelConfig['geofence_exclude'])
 		self.sentManager = sm.SentManager()
+		self.locale = options['settings']['locale']
+		
 		self.checkInterval = int(options['channler']['checkinterval'])
 
+		# get reverse gecoder (can be none)
 		self.rgc = reverseGeocoder
 		
 		# database manager
@@ -36,14 +39,14 @@ class Channler(threading.Thread):
 		self.filterManager = fm.FilterManager(channelConfig['filter'])
 		self.filter = self.filterManager.getFilter()
 
+		# notification manager
+		self.notificationManager = nm.NotificationManager(channelConfig, self.locale)
+		self.messenger = self.notificationManager.getMessenger()
+
+		# get logger
 		logging.basicConfig( format = '%(asctime)s  %(levelname)-10s %(threadName)s  %(name)s -- %(message)s',level=logging.INFO)
 		self.logger = logging.getLogger(__name__)
 		
-
-		if(self.messenger == 'telegram'):
-			self.notificationCnx = telegram.Telegram(self.botToken, self.channelId, self.channelName)
-		else:
-			raise ValueError('Unknown messenger type ' + self.messenger + " on "+self.channelName+". Please check channels.json")
 
 	def run(self):
 		self.logger.info("Thread is initialized and ready to use")
@@ -69,6 +72,6 @@ class Channler(threading.Thread):
 								address = ""
 								if self.rgc is not None:
 									address = self.rgc.getAddress(pokemon.lat, pokemon.lon)
-								self.logger.info("Pokemon with encounter %s id will be sent to: %s",pokemon.encounterId, self.channelName)
-								self.notificationCnx.sendPokemonNotification(pokemon, address)
+								self.logger.info("Pokemon with encounter %s id will be send to: %s",pokemon.encounterId, self.channelName)
+								self.messenger.sendPokemonNotification(pokemon, address)
 								self.sentManager.addEncounterToAlreadySent(pokemon.encounterId, pokemon.disappear_timestamp)

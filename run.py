@@ -10,7 +10,7 @@ from channler import channler
 from utils import configParser as cp
 from reverseGeoCoder import reverseGeoCoder as rgcClass
 
-version = '1.3.1'
+version = '1.4.0'
 
 if __name__ == "__main__":
 
@@ -27,7 +27,7 @@ if __name__ == "__main__":
 	# read config
 	config = cp.readConfig()
 	options = cp.configToDict(config)
-
+	
 	# display enabled options
 	logger.info("Databse Checkinterval is set to %s", options['channler']['checkinterval'])
 	logger.info("Using Databaseshema: %s" , options['database']['db_schema'])
@@ -74,4 +74,4 @@ if __name__ == "__main__":
 		time.sleep(0.5)
 
  
-	print('Exit  main program')	
+	print('Exit main program')	

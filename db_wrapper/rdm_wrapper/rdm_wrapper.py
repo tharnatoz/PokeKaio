@@ -12,15 +12,15 @@ from utils import utils as u
 
 class RdmWrapper(BaseWrapper):
 
-    def __init__(self, config):
+	def __init__(self, config):
 
 		# set last db request time (and substrac 30seconds so with the first request data can be found)
-        self.lastDatabaseRequestTime = time.time() - 30
+		self.lastDatabaseRequestTime = time.time() - 30
 
-        super(RdmWrapper, self).__init__(config)
+		super(RdmWrapper, self).__init__(config)
 
 
-    def getPokemonData(self, raw=False):
+	def getPokemonData(self, raw=False):
 		try:
             # get connction
 			cnx = self.databaseConnector.connect()
@@ -49,13 +49,13 @@ class RdmWrapper(BaseWrapper):
 		
 		return pokemons 
 
-    def getRaidData(self, raw=False):
-        pass 
+	def getRaidData(self, raw=False):
+		pass 
 
-    def getQuestData(self,raw=False):
-        pass 
+	def getQuestData(self,raw=False):
+		pass 
     
-    def parsePokemonDataToModel(self, rawData):
+	def parsePokemonDataToModel(self, rawData):
         # pokemon list
 		pokemons = []
 		
@@ -86,8 +86,8 @@ class RdmWrapper(BaseWrapper):
 
 		return pokemons
 
-    def parseRaidDataToModel(self, rawData):   
-        pass 
+	def parseRaidDataToModel(self, rawData):   
+		pass 
 
-    def parseQuestDataToModel(self, rawData):
-        pass 
+	def parseQuestDataToModel(self, rawData):
+		pass 
