@@ -154,7 +154,8 @@ Allowed Properties
 
 
 **For numeric properties only (ivAtk, ivDef, ivSta, cp, level)**
-The definition must follow the rule: ```{kind}: {condition:value} ``` 
+
+The definition must follow the rule: ```{key}: {condition:value} ``` 
 
 e.g. for attack stat greater or equal 14 set ```ivAtk: ">=:14" ```
 
@@ -166,9 +167,9 @@ Allowed conditions are:
 * ```>=``` greater or equal test
 
 
-
 If you don't want to test one of these values, don't add it to your filter.
 
+You must always set the Pokemon Id ```monId```
 
 ```
 "filter": {
