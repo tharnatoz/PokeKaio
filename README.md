@@ -138,11 +138,22 @@ At the moement PokeKaio supports only Pokemon filter.
    }
 ```
 
-**Advances stats (mon_advanced_stats)**
+**Advanced Pokemon (mon_advanced)**
 
 The filter takes an array of Pokemon with defined key/values you want to check.
 
-For numeric properties only (ivAtk, ivDef, ivSta, cp, level)
+
+Allowed Properties
+
+* ```ivAtk``` (Attack Stat, must be in range 0-15)
+* ```ivDef``` (Defense Stat, must be in range 0-15)
+* ```ivSta``` (Stamina Stat, must be in range 0-15)
+* ```cp``` (Combat Points)
+* ```level``` (The Pokemon level)
+* ```gender``` (Pokemon gender, values: m for male, f for female)
+
+
+**For numeric properties only (ivAtk, ivDef, ivSta, cp, level)**
 The definition must follow the rule: ```{kind}: {condition:value} ``` 
 
 e.g. for attack stat greater or equal 14 set ```ivAtk: ">=:14" ```
@@ -154,21 +165,14 @@ Allowed conditions are:
 * ```<=``` lower or equal test
 * ```>=``` greater or equal test
 
-Allowed Properties
 
-* ivAtk (Attack Stat, must be in range 0-15)
-* ivDef (Defense Stat, must be in range 0-15)
-* ivSta (Stamina Stat, must be in range 0-15)
-* cp (Combat Points)
-* level (The Pokemon level)
-* gender (Pokemon gender, values: m for male, f for female)
 
 If you don't want to test one of these values, don't add it to your filter.
 
 
 ```
 "filter": {
- "type": "mon_advanced_stats",
+ "type": "mon_advanced",
  "dataType": "pokemon",
  "name": "PokeKaio_mon_advanced_stats_example",
  "mons":[{
