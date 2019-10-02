@@ -59,4 +59,4 @@ class Mon_Stats(BaseFilter):
         # test if a blacklist is set
         helper.testBlackList(self.filterConfig)
 
-        self.logger.info("Filter config for mon_whitelist is fine.")
+        self.logger.info("Filter config for mon_stats is fine.")
