@@ -152,6 +152,10 @@ Allowed Properties
 * ```level``` (The Pokemon level)
 * ```gender``` (Pokemon gender, values: m for male, f for female)
 
+If you don't want to test any of these values, don't add it to your filter.
+
+You must always set the Pokemon Id ```monId```
+
 
 **For numeric properties only (ivAtk, ivDef, ivSta, cp, level)**
 
@@ -167,9 +171,6 @@ Allowed conditions are:
 * ```>=``` greater or equal test
 
 
-If you don't want to test one of these values, don't add it to your filter.
-
-You must always set the Pokemon Id ```monId```
 
 ```
 "filter": {
