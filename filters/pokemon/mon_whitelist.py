@@ -7,7 +7,7 @@ from filters import helper
 class Mon_Whitelist(BaseFilter):
 
     def __init__(self, filterConfig):
-        super(Mon_Whitelist, self).__init__(filterConfig, 'mon_whitelist')
+        super(Mon_Whitelist, self).__init__(filterConfig)
 
     def isSatisfied(self, pokemon):
         return pokemon.pokemonId in self.filterConfig['whitelist'] and pokemon.pokemonId not in self.filterConfig['blacklist']
@@ -21,4 +21,4 @@ class Mon_Whitelist(BaseFilter):
         # test if a blacklist is set
         helper.testBlackList(self.filterConfig)
         
-        self.logger.info("Filter config for mon_whitelist is fine.")
+        self.logger.info("Filter config for  "+self.filterType +" is fine.")

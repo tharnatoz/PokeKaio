@@ -14,6 +14,7 @@ class Pokemon(object):
 		self.staIv = None
 		self.form = None
 		self.gender = None
+		self.genderIcon = None
 		self.weather = None
 		self.level = None
 		self.cp = None

@@ -35,9 +35,15 @@ def testBlackList(filterConfig):
     if('blacklist' not in filterConfig):
         raise ValueError("Missing attribute 'blacklist' in Filter with name: "+ filterConfig['name'] +". Please add a blacklist attribute to your filter e.g. 'blacklist': [] for an empty list ")
 
-def hasOwnProperty(filterConfig, key):
-    if(key not in filterConfig):
-        raise ValueError("Missing attribute "+key+" in filter with name: "+ filterConfig['name'] +". Please add this attribute.")
+def hasOwnProperty(filterConfig, key, fName=""):   
+        
+	if('name' not in filterConfig):
+		filterName = fName
+	else:
+		filterName = filterConfig['name'] 
+        
+	if(key not in filterConfig):
+		raise ValueError("Missing attribute "+key+" in filter with name: "+ filterName +". Please add this attribute.")
 
 # test if the value is numeric if its provided as string
 def isStringDigit(filterConfig, key):
@@ -55,3 +61,15 @@ def minMaxIvRangeCorrect(lower, upper, filterName):
     if(lower > upper):
         raise ValueError("The minIv is greater than the maxIv in filter with name: "+ filterName)
 
+def checkAdvancedMonFilterCondition(condition, filterName):
+	if(condition != "==" and condition != ">=" and condition != "<=" and condition != "!="):
+		raise ValueError("Unknown advanced filter condition "+str(condition)+" in: "+ filterName)
+
+def checkIfConditionAndValueIsSet(condValue, filterName):
+	splitted = condValue.split(':')
+	if len(splitted) != 2:
+		raise ValueError("There is somthing wrong with your numeric value definition: "+ filterName + " you must set: 'condition:value' ")
+
+def checkGenderValue(value, filterName):
+    if(value != 'm' and value!='f'):
+		raise ValueError("There are only two genders. Wrong value set in: "+ filterName + " you must set gender to m or f")

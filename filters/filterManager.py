@@ -5,6 +5,7 @@ from filters.pokemon.mon_whitelist import Mon_Whitelist
 from filters.pokemon.mon_iv import Mon_Iv
 from filters.pokemon.mon_iv_whitelist import Mon_Iv_Whitelist
 from filters.pokemon.mon_stats import Mon_Stats
+from filters.pokemon.mon_advanced import Mon_Advanced
 
 class FilterManager:
 
@@ -22,6 +23,8 @@ class FilterManager:
             self.filter = Mon_Iv_Whitelist(self.filterConfig)
         elif(self.filterConfig['type'] == 'mon_stats'):
             self.filter = Mon_Stats(self.filterConfig)
+        elif(self.filterConfig['type'] == 'mon_advanced'):
+            self.filter = Mon_Advanced(self.filterConfig)
 
         if(self.filter is None):
             raise ValueError('Unknown filter type ' + filterConfig['type'] + '. Please check channels.json')

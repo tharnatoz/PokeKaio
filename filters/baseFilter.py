@@ -9,10 +9,10 @@ import logging
 class BaseFilter:
     __metaclass__ = ABCMeta
 
-    def __init__(self, filterConfig, filterType):
+    def __init__(self, filterConfig):
         self.filterConfig = filterConfig
         
-        self.filterType = filterType
+        self.filterType = filterConfig['type']
 
         # data Type is require e.g. Pokemon, Quest, Raid ...
         if ('dataType' in self.filterConfig):
