@@ -7,7 +7,7 @@ from filters import helper
 class Mon_Stats(BaseFilter):
 
     def __init__(self, filterConfig):
-        super(Mon_Stats, self).__init__(filterConfig, 'mon_whitelist')
+        super(Mon_Stats, self).__init__(filterConfig, 'mon_stats')
 
     def isSatisfied(self, pokemon):
         if (pokemon.atkIv is None):
@@ -45,7 +45,6 @@ class Mon_Stats(BaseFilter):
         f_monAtk = int(self.filterConfig['iVmaxAtk'])
         f_monDef = int(self.filterConfig['iVminDef'])
         f_monSta = int(self.filterConfig['iVminSta'])
-        f_monCP =  int(self.filterConfig['maxCP'])
 
         # iVmaxAtk is between 0 and 15
         helper.checkIfValueIsInRange(f_monAtk, 0, 15, 'iVmaxAtk', self.filterConfig['name'])
@@ -59,4 +58,4 @@ class Mon_Stats(BaseFilter):
         # test if a blacklist is set
         helper.testBlackList(self.filterConfig)
 
-        self.logger.info("Filter config for mon_stats is fine.")
+        self.logger.info("Filter config for  "+self.filterType +" is fine.")
