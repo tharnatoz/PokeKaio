@@ -140,9 +140,10 @@ At the moement PokeKaio supports only Pokemon filter.
 
 **Advances stats (mon_advanced_stats)
 
-This filter takes an Array of Pokemon with defined stats and cp values. Add as much as you need.
+The filter takes an array of Pokemon with defined stats and cp values. Add as much as you need.
 
-The definition must follow the rule: ```stat/cp: condition:value ``` e.g. for attack Stat greater or equal 14 set ```ivAtk: ">=14" ```
+The definition must follow the rule: ```{stat/cp}: {condition:value} ``` 
+e.g. for attack Stat greater or equal 14 set ```ivAtk: ">=14" ```
 
 Allowed contions are:
 
