@@ -138,6 +138,7 @@ At the moement PokeKaio supports only Pokemon filter.
    }
 ```
 
+
 **Advances stats (mon_advanced_stats)
 
 The filter takes an array of Pokemon with defined stats and cp values. Add as much as you need.
