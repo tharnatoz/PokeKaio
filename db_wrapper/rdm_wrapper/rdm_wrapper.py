@@ -72,7 +72,8 @@ class RdmWrapper(BaseWrapper):
 			pokemon.defIv = pokemon_relation['def_iv']
 			pokemon.staIv = pokemon_relation['sta_iv']
 			pokemon.form = u.getForm(pokemon.pokemonId , pokemon_relation['form'])
-			pokemon.gender = u.getGender(pokemon_relation['gender'])
+			pokemon.gender = pokemon_relation['gender']
+			pokemon.genderIcon = u.getGender(pokemon_relation['gender'])
 			pokemon.weather = u.getWeather(pokemon_relation['weather'])
 			pokemon.level = pokemon_relation['level']
 			pokemon.cp = pokemon_relation['cp']

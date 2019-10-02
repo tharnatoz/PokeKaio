@@ -62,10 +62,14 @@ def minMaxIvRangeCorrect(lower, upper, filterName):
         raise ValueError("The minIv is greater than the maxIv in filter with name: "+ filterName)
 
 def checkAdvancedMonFilterCondition(condition, filterName):
-	if(condition != "==" and condition != ">=" and condition != "<="):
+	if(condition != "==" and condition != ">=" and condition != "<=" and condition != "!="):
 		raise ValueError("Unknown advanced filter condition "+str(condition)+" in: "+ filterName)
 
 def checkIfConditionAndValueIsSet(condValue, filterName):
 	splitted = condValue.split(':')
 	if len(splitted) != 2:
-		raise ValueError("There is somthing wrong with your stat/cp definition: "+ filterName + " you must set stat/cp : 'condition:value' ")
+		raise ValueError("There is somthing wrong with your numeric value definition: "+ filterName + " you must set: 'condition:value' ")
+
+def checkGenderValue(value, filterName):
+    if(value != 'm' and value!='f'):
+		raise ValueError("There are only two genders. Wrong value set in: "+ filterName + " you must set gender to m or f")
