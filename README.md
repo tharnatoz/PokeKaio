@@ -153,7 +153,7 @@ Allowed conditions are:
 * ```>=``` greater or equal test
 
 
-You must set for each stat type and cp your value
+You must set each stat type and cp
 
 ```
 "filter": {
