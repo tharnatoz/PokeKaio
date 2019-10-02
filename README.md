@@ -140,7 +140,7 @@ At the moement PokeKaio supports only Pokemon filter.
 
 **Advanced Pokemon (mon_advanced)**
 
-The filter takes an array of Pokemon with defined key/values you want to check.
+The filter takes an array of Pokemon with defined key/values you want to check. Add as many you need!
 
 
 Allowed Properties
