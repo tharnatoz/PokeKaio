@@ -7,7 +7,7 @@ from filters import helper
 class Mon_Advanced_Stats(BaseFilter):
 
     def __init__(self, filterConfig):
-        super(Mon_Advanced_Stats, self).__init__(filterConfig, 'mon_advanced_stats')
+        super(Mon_Advanced_Stats, self).__init__(filterConfig)
 
     def isSatisfied(self, pokemon):
 

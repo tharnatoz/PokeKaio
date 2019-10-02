@@ -7,7 +7,7 @@ from filters import helper
 class Mon_Stats(BaseFilter):
 
     def __init__(self, filterConfig):
-        super(Mon_Stats, self).__init__(filterConfig, 'mon_stats')
+        super(Mon_Stats, self).__init__(filterConfig)
 
     def isSatisfied(self, pokemon):
         if (pokemon.atkIv is None):
