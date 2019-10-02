@@ -144,7 +144,7 @@ The filter takes an array of Pokemon with defined stats and cp values. Add as mu
 
 The definition must follow the rule: ```{stat/cp}: {condition:value} ``` 
 
-e.g. for attack stat greater or equal 14 set ```ivAtk: ">=14" ```
+e.g. for attack stat greater or equal 14 set ```ivAtk: ">=:14" ```
 
 Allowed conditions are:
 
@@ -162,17 +162,17 @@ You must set each stat type and cp
  "name": "PokeKaio_mon_advanced_stats_example",
  "mons":[{
    "monId": 504,
-   "ivAtk" : "<=15",
-   "ivDef" : ">=12",
-   "ivSta" :">=13",
-   "cp": "<=1500",
+   "ivAtk" : "<=:15",
+   "ivDef" : ">=:12",
+   "ivSta" :">=:13",
+   "cp": "<=:1500",
   },
   {
    "monId": 3,
-   "ivAtk" : "<=2",
-   "ivDef" : ">=12",
-   "ivSta" :">=13",
-   "cp": "<=1500",
+   "ivAtk" : "<=:2",
+   "ivDef" : ">=:12",
+   "ivSta" :">=:13",
+   "cp": "<=:1500",
   }]
 }
 ```
