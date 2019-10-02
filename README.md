@@ -195,4 +195,4 @@ You must always set the Pokemon Id ```monId```
 ```
 
 
-**Blacklist** The Blacklist is for every filter(except for mon_advanced_stats), each Pokemon Id in the list will be ignored, even if the ids are in the whitelist
+**Blacklist** The Blacklist is for every filter(except for mon_advanced), each Pokemon Id in the list will be ignored, even if the ids are in the whitelist
