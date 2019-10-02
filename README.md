@@ -76,6 +76,7 @@ At the moement PokeKaio supports only Pokemon filter.
 * mon_iv: Checks for an IV-Range
 * mon_iv_whitelist: Check for an IV-Range with a given Pokemon whitelist
 * mon_stats: checks for PVP-Mons values maxAtk, minDef, minSta and maxCP
+* mon_advanced_stats: test pokemon stats against the configured filter values
 
 
 ### Filter examples
@@ -136,4 +137,45 @@ At the moement PokeKaio supports only Pokemon filter.
     "maxCP": 1500
    }
 ```
-**Blacklist** The Blacklist is for every filter, each Pokemon Id in the list will be ignored, even if the ids are in the whitelist
+
+**Advances stats (mon_advanced_stats)**
+
+The filter takes an array of Pokemon with defined stats and cp values. Add as much as you need.
+
+The definition must follow the rule: ```{stat/cp}: {condition:value} ``` 
+
+e.g. for attack stat greater or equal 14 set ```ivAtk: ">=14" ```
+
+Allowed conditions are:
+
+* ```==``` equal test
+* ```<=``` lower or equal test
+* ```>=``` greater or equal test
+
+
+You must set each stat type and cp
+
+```
+"filter": {
+ "type": "mon_advanced_stats",
+ "dataType": "pokemon",
+ "name": "PokeKaio_mon_advanced_stats_example",
+ "mons":[{
+   "monId": 504,
+   "ivAtk" : "<=15",
+   "ivDef" : ">=12",
+   "ivSta" :">=13",
+   "cp": "<=1500",
+  },
+  {
+   "monId": 3,
+   "ivAtk" : "<=2",
+   "ivDef" : ">=12",
+   "ivSta" :">=13",
+   "cp": "<=1500",
+  }]
+}
+```
+
+
+**Blacklist** The Blacklist is for every filter(except for mon_advanced_stats), each Pokemon Id in the list will be ignored, even if the ids are in the whitelist
