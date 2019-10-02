@@ -142,7 +142,7 @@ At the moement PokeKaio supports only Pokemon filter.
 
 This filter takes an Array of Pokemon with defined stats and cp values. Add as much as you need.
 
-The definition must follow the rule: ```stat/cp: condition:value ``` e.g. for attack Stat greater or equal 14 set ``´ivAtk: ">=14" ```
+The definition must follow the rule: ```stat/cp: condition:value ``` e.g. for attack Stat greater or equal 14 set ```ivAtk: ">=14" ```
 
 Allowed contions are:
 
@@ -155,26 +155,24 @@ You must set for each stat type and cp your value
 
 ```
 "filter": {
-				"type": "mon_advanced_stats",
-				"dataType": "pokemon",
-				"name": "PokeKaio_mon_advanced_stats_example",
-				"mons":[{
-					 "monId": 504,
-					 "ivAtk" : "<=15",
-					 "ivDef" : ">=12",
-					 "ivSta" :">=13",
-					 "cp": "<=1500",
-				 },
-				 {
-					 "monId": 3,
-					 "ivAtk" : "<=2",
-					 "ivDef" : ">=12",
-					 "ivSta" :">=13",
-					 "cp": "<=1500",
-				 }
-			 ]
-			}
-
+	"type": "mon_advanced_stats",
+	"dataType": "pokemon",
+	"name": "PokeKaio_mon_advanced_stats_example",
+	"mons":[{
+		 "monId": 504,
+		 "ivAtk" : "<=15",
+		 "ivDef" : ">=12",
+		 "ivSta" :">=13",
+		 "cp": "<=1500",
+		},
+		{
+		 "monId": 3,
+		 "ivAtk" : "<=2",
+		 "ivDef" : ">=12",
+		 "ivSta" :">=13",
+		 "cp": "<=1500",
+	   	}]
+	}
 ```
 
 
