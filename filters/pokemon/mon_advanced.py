@@ -19,7 +19,13 @@ class Mon_Advanced(BaseFilter):
             if pokemon.pokemonId != monFilter['monId']:
                 return False
             # gender
-            
+            if "gender" in monFilter:
+                # pokemon male - filter female -> !=
+                if pokemon.gender == 1 and monFilter['gender'] == 'f':
+                    return False
+                # pokemon female - filter male -> != 
+                if pokemon.gender == 2 and monFilter['gender'] == 'm':
+                    return False
             # level
             if "level" in monFilter:
                 if(not self.testNumericValue(pokemon.atkIv, monFilter['level'])):
@@ -133,6 +139,6 @@ class Mon_Advanced(BaseFilter):
                 helper.checkAdvancedMonFilterCondition(condFilterLevel , tmpFilterName)
 
             if('gender' in monFilter):
-                helper.checkGenderValue(monFilter['gender'])
+                helper.checkGenderValue(monFilter['gender'], tmpFilterName)
 
         self.logger.info("Filter config for "+ self.filterType +" is fine.")
