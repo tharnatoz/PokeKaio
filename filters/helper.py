@@ -64,3 +64,8 @@ def minMaxIvRangeCorrect(lower, upper, filterName):
 def checkAdvancedMonFilterCondition(condition, filterName):
 	if(condition != "==" and condition != ">=" and condition != "<="):
 		raise ValueError("Unknown advanced filter condition "+str(condition)+" in: "+ filterName)
+
+def checkIfConditionAndValueIsSet(condValue, filterName):
+	splitted = condValue.split(':')
+	if len(splitted) != 2:
+		raise ValueError("There is somthing wrong with your stat/cp definition: "+ filterName + " you must set stat/cp : 'condition:value' ")

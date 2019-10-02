@@ -22,8 +22,9 @@ class Mon_Advanced_Stats(BaseFilter):
 
     # test the found pokemon value against the filter condition 
     def testValue(self, foundValue, filterCondition):
-        condFilter = filterCondition[0:2]
-        valFilter = int(filterCondition[2: len(filterCondition)])
+        splitted = filterCondition.split(':')
+        condFilter = splitted[0]
+        valFilter = int(splitted[1])
         if(condFilter == "=="):
             return foundValue == valFilter
         if(condFilter == ">="):
@@ -44,11 +45,23 @@ class Mon_Advanced_Stats(BaseFilter):
             helper.hasOwnProperty(monFilter,'ivSta', tmpFilterName)
             helper.hasOwnProperty(monFilter,'cp',    tmpFilterName)
 
+            # check for each stat/cp it condition and value is set
+            helper.checkIfConditionAndValueIsSet(monFilter['ivAtk'], tmpFilterName)
+            helper.checkIfConditionAndValueIsSet(monFilter['ivDef'], tmpFilterName)
+            helper.checkIfConditionAndValueIsSet(monFilter['ivSta'], tmpFilterName)
+            helper.checkIfConditionAndValueIsSet(monFilter['cp'],    tmpFilterName)
+
+            # first split the filter
+            splittedAtk =  monFilter['ivAtk'].split(':')
+            splittedDef =  monFilter['ivDef'].split(':')
+            splittedSta =  monFilter['ivSta'].split(':')
+            splittedCp =   monFilter['cp'].split(':')
+
             # extract the condition, allowed values are ==, >=, <=
-            condFilterAtk = monFilter['ivAtk'][0:2]
-            condFilterDef = monFilter['ivDef'][0:2]
-            condFilterSta = monFilter['ivSta'][0:2]
-            condFilterCp =  monFilter['cp'][0:2]
+            condFilterAtk = splittedAtk[0]
+            condFilterDef = splittedDef[0]
+            condFilterSta = splittedSta[0]
+            condFilterCp =  splittedCp[0]
             
             # now check if all properties are set in each advanced mon filter
             helper.checkAdvancedMonFilterCondition(condFilterAtk, tmpFilterName)
@@ -57,9 +70,9 @@ class Mon_Advanced_Stats(BaseFilter):
             helper.checkAdvancedMonFilterCondition(condFilterCp , tmpFilterName)
 
             # extract the condition value, must be in range 0-15
-            valueFilterAtk = int(monFilter['ivAtk'][2: len(monFilter['ivAtk'])])
-            valueFilterDef = int(monFilter['ivDef'][2: len(monFilter['ivDef'])])
-            valueFilterSta = int(monFilter['ivSta'][2: len(monFilter['ivSta'])])
+            valueFilterAtk = int(splittedAtk[1])
+            valueFilterDef = int(splittedDef[1])
+            valueFilterSta = int(splittedSta[1])
 
             # now check if the stats are >=0 and <=15
             helper.checkIfValueIsInRange(valueFilterAtk, 0, 15, "ivAtk", tmpFilterName)
