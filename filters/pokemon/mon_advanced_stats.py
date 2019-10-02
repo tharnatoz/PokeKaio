@@ -20,7 +20,7 @@ class Mon_Advanced_Stats(BaseFilter):
                 return self.testValue(pokemon.atkIv, monFilter['ivAtk']) and self.testValue(pokemon.defIv, monFilter['ivDef']) and self.testValue(pokemon.staIv, monFilter['ivSta']) and self.testValue(pokemon.cp, monFilter['cp'])
 
 
-    # 
+    # test the found pokemon value against the filter condition 
     def testValue(self, foundValue, filterCondition):
         condFilter = filterCondition[0:2]
         valFilter = int(filterCondition[2: len(filterCondition)])
