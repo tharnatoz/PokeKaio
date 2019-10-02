@@ -143,13 +143,14 @@ At the moement PokeKaio supports only Pokemon filter.
 The filter takes an array of Pokemon with defined stats and cp values. Add as much as you need.
 
 The definition must follow the rule: ```{stat/cp}: {condition:value} ``` 
-e.g. for attack Stat greater or equal 14 set ```ivAtk: ">=14" ```
 
-Allowed contions are:
+e.g. for attack stat greater or equal 14 set ```ivAtk: ">=14" ```
+
+Allowed conditions are:
 
 * ```==``` equal test
 * ```<=``` lower or equal test
-* ```==``` higher or equal test
+* ```>=``` greater or equal test
 
 
 You must set for each stat type and cp your value
