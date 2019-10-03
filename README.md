@@ -172,7 +172,7 @@ Allowed conditions are:
 
 Big Thanks to Flo and his PVP-Filter.
 You can find the preconfigured PVP-Filter [here](https://github.com/1522784/Pokeland-PvP-Suche). 
-Just configure your channel and copy the array from Search.json into your mon_advanced under "mons": <the_array>
+Just configure your channel and copy the array from Search.json into your mon_advanced under ```"mons"```
 and its ready to use.
 
 ```
