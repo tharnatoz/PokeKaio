@@ -170,7 +170,9 @@ Allowed conditions are:
 * ```<=``` lower or equal test
 * ```>=``` greater or equal test
 
-Big Thanks to Flo and his PVP-Filter.
+
+***Big Thanks to Flo and his PVP-Filter***.
+
 The preconfigured PVP-Filter can you find here: [https://github.com/1522784/Pokeland-PvP-Suche](https://github.com/1522784/Pokeland-PvP-Suche). 
 Just configure your channel and copy the array from Search.json into your mon_advanced under ```"mons"```
 and its ready to use.
