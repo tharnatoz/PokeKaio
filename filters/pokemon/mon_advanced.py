@@ -13,42 +13,50 @@ class Mon_Advanced(BaseFilter):
 
         if(pokemon.atkIv is None):
             return False
-
+        
         for monFilter in self.filterConfig['mons']:
+            
+            # used as flag, if some value does not match it will set to false
+            criteriaSatisfied = True 
+            
             # first check pokemon id
             if pokemon.pokemonId != monFilter['monId']:
-                return False
+                criteriaSatisfied = False
             # gender
-            if "gender" in monFilter:
+            if "gender" in monFilter and criteriaSatisfied:
                 # pokemon male - filter female -> !=
                 if pokemon.gender == 1 and monFilter['gender'] == 'f':
-                    return False
+                    criteriaSatisfied = False
                 # pokemon female - filter male -> != 
                 if pokemon.gender == 2 and monFilter['gender'] == 'm':
-                    return False
+                    criteriaSatisfied = False
             # level
-            if "level" in monFilter:
+            if "level" in monFilter and criteriaSatisfied:
                 if(not self.testNumericValue(pokemon.atkIv, monFilter['level'])):
-                    return False
+                    criteriaSatisfied = False
             # ivAtk
-            if "ivAtk" in monFilter:
+            if "ivAtk" in monFilter and criteriaSatisfied:
                 if(not self.testNumericValue(pokemon.atkIv, monFilter['ivAtk'])):
-                    return False
+                    criteriaSatisfied = False
             # ivDef
-            if "ivDef" in monFilter:
+            if "ivDef" in monFilter and criteriaSatisfied:
                 if(not self.testNumericValue(pokemon.defIv, monFilter['ivDef'])):
-                    return False
+                    criteriaSatisfied = False
             # ivSta
-            if "ivSta" in monFilter:
+            if "ivSta" in monFilter and criteriaSatisfied:
                 if(not self.testNumericValue(pokemon.staIv, monFilter['ivSta'])):
-                    return False
+                    criteriaSatisfied = False
             # cp
-            if "cp" in monFilter:
+            if "cp" in monFilter and criteriaSatisfied:
                 if(not self.testNumericValue(pokemon.cp, monFilter['cp'])):
-                    return False
+                    criteriaSatisfied = False
             
-            # all fine
-            return True
+            # if the criteria are still true, that means all is fine and a mon was found
+            if criteriaSatisfied:
+                return True
+        
+        # all filter mon are checked but none was satisfied so return false
+        return False
 
 
     # test the found pokemon value against the filter condition 
